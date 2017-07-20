@@ -29,11 +29,11 @@ If you feel stuck or forget something, all the resources to complete this can be
 
 Column | Type | Modifiers
 --- | --- | ---
-id | serial (translates to integer and AUTO_INCREMENT) | PRIMARY KEY
+id | serial (translates to integer and AUTO\_INCREMENT) | PRIMARY KEY
 username | VARCHAR(255) | NOT NULL
 age | INTEGER |
-first_name | VARCHAR(255) |
-last_name | VARCHAR(255) |
+first\_name | VARCHAR(255) |
+last\_name | VARCHAR(255) |
 location | VARCHAR(255) |
 
 
@@ -52,17 +52,18 @@ text_content | TEXT |
 Column | Type | Modifiers
 --- | --- | ---
 id | SERIAL | PRIMARY KEY
-post_id | INTEGER | REFERENCES blog_posts(id),
-reply_to | INTEGER | REFERENCES post_comments(id),
-user_id | INTEGER | REFERENCES users(id)
-text_content | TEXT |
+post\_id | INTEGER | REFERENCES blog\_posts(id),
+reply\_to | INTEGER | REFERENCES post\_comments(id),
+user\_id | INTEGER | REFERENCES users(id)
+text\_content | TEXT |
 
-## Challenges
+## Challenges
 
 1. Retrieve all the information from the `users` table
 
 **Expected Result**
-id | username | age | first_name | last_name | location
+
+id | username | age | first\_name | last\_name | location
 --- | --- | --- | --- | --- | ---
 1 | Sery1976 | 28 | Alisha | Clayton | Middlehill, UK | 
 2 | Notne1991 | 36 | Chelsea | Cross | Sunipol, UK | 
@@ -76,6 +77,7 @@ id | username | age | first_name | last_name | location
 2. Retrieve a list of *only* username and location from the `users` table
 
 **Expected Result**
+
 username | location
 --- | ---
 Sery1976 | Middlehill, UK | 
@@ -90,7 +92,7 @@ Thresuall | Slackhall, UK |
 3. Retrieve a list of users who are older than 50
 
 **Expected Result**
-id | username | age | first_name | last_name | location
+id | username | age | first\_name | last\_name | location
 --- | --- | --- | --- | --- | ---
 4 | Spont1935 | 72 | Matthew | Griffin | Saxilby, UK | 
 6 | Ovion1948 | 53 | Reece | Sheppard | Easton in Gordano, UK | 
@@ -99,7 +101,8 @@ id | username | age | first_name | last_name | location
 4. Retrieve the first and last name of the user who lives in `Saxilby, UK` and is older than 40.
 
 **Expected Result**
-first_name | last_name | location
+
+first\_name | last\_name | location
 --- | --- | ---
 Matthew | Griffin | Saxilby, UK
 
