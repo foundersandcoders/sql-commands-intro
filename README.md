@@ -92,6 +92,7 @@ Thresuall | Slackhall, UK |
 3. Retrieve a list of users who are older than 50
 
 **Expected Result**
+
 id | username | age | first\_name | last\_name | location
 --- | --- | --- | --- | --- | ---
 4 | Spont1935 | 72 | Matthew | Griffin | Saxilby, UK | 
