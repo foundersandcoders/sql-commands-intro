@@ -10,7 +10,7 @@ If you feel stuck or forget something, all the resources to complete this can be
 
 [PostgreSQL Cheatsheet](https://github.com/macintoshhelper/learn-sql/tree/master/postgresql/cheatsheet.md)
 
-[Skip to hints - please use as a last resort](#hints)
+[Skip to hints](#hints)
 
 ### Setting up the workshop database
 
@@ -72,6 +72,7 @@ id | username | age | first\_name | last\_name | location
 5 | Precand | 19 | Erin | Gould | Stanton, UK | 
 6 | Ovion1948 | 53 | Reece | Sheppard | Easton in Gordano, UK | 
 7 | Thresuall | 21 | Daniel | Grant | Slackhall, UK | 
+8 | Brity1971 | 23 | Daniel | Brennan | Saxilby, UK
 
 
 2. Retrieve a list of *only* username and location from the `users` table
@@ -87,6 +88,7 @@ Spont1935 | Saxilby, UK |
 Precand | Stanton, UK | 
 Ovion1948 | Easton in Gordano, UK | 
 Thresuall | Slackhall, UK | 
+Brity1971 | Saxilby, UK
 
 
 3. Retrieve a list of users who are older than 50
@@ -108,8 +110,46 @@ first\_name | last\_name | location
 Matthew | Griffin | Saxilby, UK
 
 
+5. Retrieve a list of user IDs that have blog posts that contain the word `departure`.
+
+**Expected Result**
+
+user\_id |
+--- |
+2 |
+3 |
+
+6. Imagine an API request is made for blog posts with the IDs `3 and 6`. Show the blog posts text content.
+
+**Expected Result**
+
+user\_id | text\_content
+--- | ---
+3 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.
+6 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi.
+
+7. Get a list of users and label a new row, `teenager` with `true` or `false`. 
+> (check cheatsheet or code along)
+
+**Expected Result**
+
+user\_id | teenager
+--- | ---
+1 | false
+2 | false
+3 | false
+4 | false
+5 | true
+6 | false
+7 | false
+8 | false
+
 ## Hints
 
 1. Use `SELECT`
 2. Use `SELECT`
 3. Use `SELECT` and `WHERE`
+4. Use `SELECT` and `WHERE`
+5. Use `SELECT` and `LIKE`
+6. Use `SELECT`, `WHERE` and `OR` or `IN (a, b)`
+7. Use `SELECT`, `END AS`, `CASE WHEN` and `then`, ELSE`
