@@ -32,7 +32,8 @@ INSERT INTO users (username, age, first_name, last_name, location) VALUES
   ('Spont1935', 72, 'Matthew', 'Griffin', 'Saxilby, UK'),
   ('Precand', 19, 'Erin', 'Gould', 'Stanton, UK'),
   ('Ovion1948', 53, 'Reece', 'Sheppard', 'Easton in Gordano, UK'),
-  ('Thresuall', 21, 'Daniel', 'Grant', 'Slackhall, UK')
+  ('Thresuall', 21, 'Daniel', 'Grant', 'Slackhall, UK'),
+  ('Brity1971', 23, 'Daniel', 'Brennan', 'Saxilby, UK')
 ;
 
 INSERT INTO blog_posts (text_content, user_id) VALUES
@@ -41,7 +42,7 @@ INSERT INTO blog_posts (text_content, user_id) VALUES
     1
   ),
   (
-    'Peculiar trifling absolute and wandered vicinity property yet. The and collecting motionless difficulty son.',
+    'Peculiar trifling absolute and wandered vicinity property yet. The and collecting motionless departure difficulty son.',
     2
   ),
   (
@@ -63,6 +64,15 @@ INSERT INTO blog_posts (text_content, user_id) VALUES
   (
     'Proin euismod arcu nec diam dictum, a eleifend sem placerat. Quisque ultrices fermentum mi, fermentum molestie mauris tincidunt sit amet.',
     7
+  )
+;
+
+INSERT INTO post_comments (post_id, reply_to, user_id, text_content) VALUES
+  (
+    4,
+    NULL,
+    2,
+    'Great blog post! Really nice. Would be good to have an English version though :)'
   )
 ;
 
