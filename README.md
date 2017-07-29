@@ -4,14 +4,6 @@ This workshop will teach you how to use basic SQL - Structured Query Language. S
 ## Getting Started
 Make sure you have installed and setup PostgreSQL.
 
-To learn how to use SQL, refer to https://github.com/macintoshhelper/learn-sql/tree/master/postgresql .
-
-If you feel stuck or forget something, all the resources to complete this can be found there.
-
-[PostgreSQL Cheatsheet](https://github.com/macintoshhelper/learn-sql/tree/master/postgresql/cheatsheet.md)
-
-[Skip to hints](#hints)
-
 ### Setting up the workshop database
 
 Clone this workshop and `cd` into it, then run these commands after using `psql`:
@@ -142,13 +134,3 @@ user\_id | teenager
 6 | false
 7 | false
 8 | false
-
-## Hints
-
-1. Use `SELECT`
-2. Use `SELECT`
-3. Use `SELECT` and `WHERE`
-4. Use `SELECT` and `WHERE`
-5. Use `SELECT` and `LIKE`
-6. Use `SELECT`, `WHERE` and `OR` or `IN (a, b)`
-7. Use `SELECT`, `END AS`, `CASE WHEN` and `then`, ELSE`
