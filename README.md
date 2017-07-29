@@ -114,7 +114,7 @@ Matthew | Griffin | Saxilby, UK
 
 **Expected Result**
 
-user\_id |
+id |
 --- |
 2 |
 3 |
