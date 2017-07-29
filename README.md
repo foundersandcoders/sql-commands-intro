@@ -1,6 +1,13 @@
 # SQL Commands Introduction
 This workshop will teach you how to use basic SQL - Structured Query Language. SQL is a standard for relational database systems, while MySQL and PostgreSQL are implementations of the standard.
 
+## Syntaxes
+psql CLI
+```
+\c <database name> # Connect to database
+\i <file path> # Load SQL build file into currently open database
+```
+
 ## Getting Started
 Make sure you have installed and setup PostgreSQL.
 
@@ -11,8 +18,8 @@ Clone this workshop and `cd` into it, then run these commands after using `psql`
   ```sql
   CREATE DATABASE blog_workshop;
 
-  \c blog_workshop
-  \i init.sql
+  \c blog_workshop  -- connect to the database
+  \i init.sql -- run SQL build file in blog_workshop
   ```
 
 ## Schema Diagrams
