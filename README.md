@@ -109,11 +109,11 @@ first\_name | last\_name | location
 Matthew | Griffin | Saxilby, UK
 
 
-5. Using the `WHERE` operator, `[LIKE](https://www.w3schools.com/sql/sql_like.asp)`, retrieve a list of user IDs that have blog posts that contain the word `departure`.
+5. Using the `WHERE` operator, `[LIKE](https://www.w3schools.com/sql/sql_like.asp)`, retrieve a list of user IDs that have posted blog posts that contain the word `departure`.
 
 **Expected Result**
 
-id |
+user\_id |
 --- |
 2 |
 3 |
