@@ -1,12 +1,6 @@
 # SQL Commands Introduction
 In this workshop, we will be using basic SQL in a CLI to work with an existing blog database.
 
-## Syntaxes
-psql CLI
-```
-\c <database name> # Connect to database
-\i <file path> # Load SQL build file into currently open database
-```
 
 ## Getting Started
 Make sure you have installed and setup PostgreSQL: [installation instructions](https://github.com/macintoshhelper/learn-sql/blob/master/postgresql/setup.md)
