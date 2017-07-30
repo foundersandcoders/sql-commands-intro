@@ -9,7 +9,7 @@ psql CLI
 ```
 
 ## Getting Started
-Make sure you have installed and setup PostgreSQL.
+Make sure you have installed and setup PostgreSQL: [installation instructions](https://github.com/macintoshhelper/learn-sql/blob/master/postgresql/setup.md)
 
 ### Setting up the workshop database
 
