@@ -1,5 +1,5 @@
 # SQL Commands Introduction
-This workshop will teach you how to use basic SQL - Structured Query Language. SQL is a standard for relational database systems, while MySQL and PostgreSQL are implementations of the standard.
+In this workshop, we will be using basic SQL in a CLI to work with an existing blog database.
 
 ## Syntaxes
 psql CLI
@@ -100,7 +100,7 @@ id | username | age | first\_name | last\_name | location
 6 | Ovion1948 | 53 | Reece | Sheppard | Easton in Gordano, UK | 
 
 
-4. Using `SELECT` and `WHERE`, retrieve the first and last name of the user who lives in `Saxilby, UK` and is older than 40.
+4. Using `SELECT` and `WHERE`, retrieve the first, last name and location of the user who lives in `Saxilby, UK` and is older than 40.
 
 **Expected Result**
 
@@ -118,7 +118,7 @@ user\_id |
 2 |
 3 |
 
-6. Imagine an API request is made for blog posts with the IDs `3 and 6`. Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), show the blog posts text content.
+6. Imagine an API request is made for blog posts with the IDs `3 and 6`. Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), show the blog posts' user id and text content.
 
 **Expected Result**
 
@@ -127,7 +127,8 @@ user\_id | text\_content
 3 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.
 6 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi.
 
-7. Using [`CASE WHEN`](https://www.postgresql.org/docs/7.4/static/functions-conditional.html), get a list of users and label a new row, `teenager` with `true` or `false`. 
+7. Using [`CASE WHEN`](https://www.postgresql.org/docs/7.4/static/functions-conditional.html), get a list of user ids from the `users` table and label a new row, `teenager` with `true` or `false`. 
+
 
 **Expected Result**
 
