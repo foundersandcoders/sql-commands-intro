@@ -141,3 +141,33 @@ user\_id | teenager
 6 | false
 7 | false
 8 | false
+
+
+## Using `INSERT` and `UPDATE`
+So, we have retrieved data from the database. The next exercises will cover adding data
+
+8. Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a blog post with the text "Hello world" to the user with ID `1`, then run `SELECT text_content FROM blog_posts WHERE id = 8;` to test for the expected result.
+
+**Expected Result**
+
+text\_content |
+--- |
+Hello World |
+
+9. Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `5`, then run `SELECT user_id FROM blog_posts WHERE id = 8;` to test for the expected result.
+
+**Expected Result**
+
+user\_id |
+--- |
+5 |
+
+**Bonus Question**
+
+10. Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a comment with the text `Interesting post` from the user\_id of `3` to the blog post containing the text `Peculiar` (reply\_to will be null), then run `SELECT text_content FROM post_comments WHERE id = 2;` to test for the expected result.
+
+**Expected Result**
+
+text\_content |
+--- |
+Interesting post |
