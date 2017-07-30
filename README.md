@@ -58,7 +58,7 @@ text\_content | TEXT |
 
 ## Challenges
 
-1. Using `[SELECT](https://www.w3schools.com/sql/sql_select.asp)`, retrieve all the information from the `users` table
+1. Using [`SELECT`](https://www.w3schools.com/sql/sql_select.asp), retrieve all the information from the `users` table
 
 **Expected Result**
 
@@ -74,7 +74,7 @@ id | username | age | first\_name | last\_name | location
 8 | Brity1971 | 23 | Daniel | Brennan | Saxilby, UK
 
 
-2. Using `[SELECT](https://www.w3schools.com/sql/sql_select.asp)`, retrieve a list of *only* username and location from the `users` table
+2. Using `SELECT`, retrieve a list of *only* username and location from the `users` table
 
 **Expected Result**
 
@@ -90,7 +90,7 @@ Thresuall | Slackhall, UK |
 Brity1971 | Saxilby, UK
 
 
-3. Using `SELECT` and `[WHERE](https://www.w3schools.com/sql/sql_where.asp)`, retrieve a list of users who are older than 50
+3. Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve a list of users who are older than 50
 
 **Expected Result**
 
@@ -100,7 +100,7 @@ id | username | age | first\_name | last\_name | location
 6 | Ovion1948 | 53 | Reece | Sheppard | Easton in Gordano, UK | 
 
 
-4. Using `SELECT` and `[WHERE](https://www.w3schools.com/sql/sql_where.asp)`, retrieve the first and last name of the user who lives in `Saxilby, UK` and is older than 40.
+4. Using `SELECT` and `WHERE`, retrieve the first and last name of the user who lives in `Saxilby, UK` and is older than 40.
 
 **Expected Result**
 
@@ -109,7 +109,7 @@ first\_name | last\_name | location
 Matthew | Griffin | Saxilby, UK
 
 
-5. Using the `WHERE` operator, `[LIKE](https://www.w3schools.com/sql/sql_like.asp)`, retrieve a list of user IDs that have posted blog posts that contain the word `departure`.
+5. Using the `WHERE` operator, [`LIKE`](https://www.w3schools.com/sql/sql_like.asp), retrieve a list of user IDs that have posted blog posts that contain the word `departure`.
 
 **Expected Result**
 
@@ -118,7 +118,7 @@ user\_id |
 2 |
 3 |
 
-6. Imagine an API request is made for blog posts with the IDs `3 and 6`. Using `WHERE` and `[IN](https://www.w3schools.com/sql/sql_in.asp)`, show the blog posts text content.
+6. Imagine an API request is made for blog posts with the IDs `3 and 6`. Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), show the blog posts text content.
 
 **Expected Result**
 
@@ -127,7 +127,7 @@ user\_id | text\_content
 3 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.
 6 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi.
 
-7. Using `[CASE WHEN](https://www.postgresql.org/docs/7.4/static/functions-conditional.html)`, get a list of users and label a new row, `teenager` with `true` or `false`. 
+7. Using [`CASE WHEN`](https://www.postgresql.org/docs/7.4/static/functions-conditional.html), get a list of users and label a new row, `teenager` with `true` or `false`. 
 
 **Expected Result**
 
