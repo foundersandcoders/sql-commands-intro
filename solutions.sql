@@ -27,7 +27,7 @@ SELECT id,
 INSERT INTO blog_posts (text_content, user_id) VALUES ('Hello World', 1);
 
 -- Question 9
-UPDATE blog_posts SET user_id = 5 WHERE id = 8;
+UPDATE blog_posts SET user_id=5 WHERE text_content='Hello world';
 
 -- Question 10
 INSERT INTO post_comments (post_id, reply_to, user_id, text_content) VALUES
