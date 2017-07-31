@@ -18,7 +18,12 @@ CREATE DATABASE blog_workshop;
 `\i init.sql` - run SQL build file in blog_workshop (You can also do `psql --file init.sql` in bash)
 
 
-## Schema Diagrams
+## Schema Info
+You are given the task of creating a blog. A simple blog would have users who can write blog posts, and blog posts that can contain comments and replies.
+
+Users has no direct relationships to other tables, but a blog post has to have an author, so `blog_posts` has a `user_id` `FOREIGN KEY` of `users(id)`. 
+
+Comments have to be attached to a blog post, so `post_id` has a `post_id` `FOREIGN KEY` of `blog_posts(id)`.
 
 ### Users - `users`
 
