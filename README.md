@@ -128,7 +128,7 @@ user\_id | text\_content
 
 **Expected Result**
 
-user\_id | teenager
+id | teenager
 --- | ---
 1 | false
 2 | false
