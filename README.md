@@ -156,7 +156,7 @@ text\_content |
 --- |
 Hello World |
 
-9. Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `5`, then run `SELECT user_id FROM blog_posts WHERE user_id=5;` to test for the expected result.
+9. Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `5`, then run `SELECT user_id FROM blog_posts WHERE text_content='Hello world';` to test for the expected result.
 
 **Expected Result**
 
