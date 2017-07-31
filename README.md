@@ -128,7 +128,7 @@ user\_id | text\_content
 3 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.
 6 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi.
 
-7. Using [`CASE WHEN`](https://www.postgresql.org/docs/7.4/static/functions-conditional.html), get a list of user ids from the `users` table and label a new row, `teenager` with `true` or `false`. 
+7. You need to find out which of your users are teenagers and which are not. Using [`CASE WHEN`](https://www.postgresql.org/docs/7.4/static/functions-conditional.html) and [`AS`](https://www.w3schools.com/sql/sql_alias.asp), show a list of users by their `id` and a new column called `teenager` with the values `true` or `false`. 
 
 
 **Expected Result**
@@ -148,7 +148,7 @@ id | teenager
 ## Using `INSERT` and `UPDATE`
 So, we have retrieved data from the database. The next exercises will cover adding data
 
-8. Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a blog post with the text "Hello world" to the user with ID `1`, then run `SELECT text_content FROM blog_posts WHERE id = 8;` to test for the expected result.
+8. Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a blog post with the text "Hello world" to the user with ID `1`, then run `SELECT text_content FROM blog_posts WHERE user_id=1;` to test for the expected result.
 
 **Expected Result**
 
@@ -156,7 +156,7 @@ text\_content |
 --- |
 Hello World |
 
-9. Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `5`, then run `SELECT user_id FROM blog_posts WHERE id = 8;` to test for the expected result.
+9. Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `5`, then run `SELECT user_id FROM blog_posts WHERE user_id=5` to test for the expected result.
 
 **Expected Result**
 
