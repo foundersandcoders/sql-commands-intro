@@ -9,12 +9,14 @@ Make sure you have installed and setup PostgreSQL: [installation instructions](h
 
 Clone this workshop and `cd` into it, then run these commands after using `psql`:
 
-  ```sql
-  CREATE DATABASE blog_workshop;
+```sql
+CREATE DATABASE blog_workshop;
+```
 
-  \c blog_workshop  -- connect to the database
-  \i init.sql -- run SQL build file in blog_workshop
-  ```
+`\c blog_workshop`  - connect to the database
+
+`\i init.sql` - run SQL build file in blog_workshop (You can also do `psql --file init.sql` in bash)
+
 
 ## Schema Diagrams
 
