@@ -86,7 +86,7 @@ Thresuall | Slackhall, UK |
 Brity1971 | Saxilby, UK
 
 
-3. Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve a list of users who are older than 50
+3. Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve a list of users with *all* their data who are older than 50
 
 **Expected Result**
 
