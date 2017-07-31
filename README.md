@@ -161,7 +161,7 @@ user\_id |
 
 **Bonus Question**
 
-10. Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a comment with the text `Interesting post` from the user\_id of `3` to the blog post containing the text `Peculiar` (reply\_to will be null), then run `SELECT text_content FROM post_comments WHERE id = 2;` to test for the expected result.
+10. Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a comment with the text `Interesting post` from the user\_id of `3` to the blog post containing the text `Peculiar` (reply\_to will be null), then run `SELECT text_content FROM post_comments WHERE post_id = 2;` to test for the expected result.
 
 **Expected Result**
 
