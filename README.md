@@ -9,14 +9,21 @@ Make sure you have installed and setup PostgreSQL: [installation instructions](h
 
 Clone this workshop and `cd` into it, then run these commands after using `psql`:
 
-  ```sql
-  CREATE DATABASE blog_workshop;
+```sql
+CREATE DATABASE blog_workshop;
+```
 
-  \c blog_workshop  -- connect to the database
-  \i init.sql -- run SQL build file in blog_workshop
-  ```
+`\c blog_workshop`  - connect to the database
 
-## Schema Diagrams
+`\i init.sql` - run SQL build file in blog_workshop (You can also do `psql --file init.sql` in bash)
+
+
+## Schema Info
+You are given the task of creating a blog. A simple blog would have users who can write blog posts, and blog posts that can contain comments and replies.
+
+Users has no direct relationships to other tables, but a blog post has to have an author, so `blog_posts` has a `user_id` `FOREIGN KEY` of `users(id)`. 
+
+Comments have to be attached to a blog post, so `post_id` has a `post_id` `FOREIGN KEY` of `blog_posts(id)`.
 
 ### Users - `users`
 
@@ -84,7 +91,7 @@ Thresuall | Slackhall, UK |
 Brity1971 | Saxilby, UK
 
 
-3. Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve a list of users who are older than 50
+3. Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve a list of users with *all* their data who are older than 50
 
 **Expected Result**
 
@@ -121,12 +128,12 @@ user\_id | text\_content
 3 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.
 6 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi.
 
-7. Using [`CASE WHEN`](https://www.postgresql.org/docs/7.4/static/functions-conditional.html), get a list of user ids from the `users` table and label a new row, `teenager` with `true` or `false`. 
+7. You need to find out which of your users are teenagers and which are not. Using [`CASE WHEN`](https://www.postgresql.org/docs/7.4/static/functions-conditional.html) and [`AS`](https://www.w3schools.com/sql/sql_alias.asp), show a list of users by their `id` and a new column called `teenager` with the values `true` or `false`. 
 
 
 **Expected Result**
 
-user\_id | teenager
+id | teenager
 --- | ---
 1 | false
 2 | false
@@ -141,7 +148,7 @@ user\_id | teenager
 ## Using `INSERT` and `UPDATE`
 So, we have retrieved data from the database. The next exercises will cover adding data
 
-8. Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a blog post with the text "Hello world" to the user with ID `1`, then run `SELECT text_content FROM blog_posts WHERE id = 8;` to test for the expected result.
+8. Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a blog post with the text "Hello world" to the user with ID `1`, then run `SELECT text_content FROM blog_posts WHERE user_id=1;` to test for the expected result.
 
 **Expected Result**
 
@@ -149,7 +156,7 @@ text\_content |
 --- |
 Hello World |
 
-9. Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `5`, then run `SELECT user_id FROM blog_posts WHERE id = 8;` to test for the expected result.
+9. Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `5`, then run `SELECT user_id FROM blog_posts WHERE text_content='Hello world';` to test for the expected result.
 
 **Expected Result**
 
@@ -159,7 +166,7 @@ user\_id |
 
 **Bonus Question**
 
-10. Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a comment with the text `Interesting post` from the user\_id of `3` to the blog post containing the text `Peculiar` (reply\_to will be null), then run `SELECT text_content FROM post_comments WHERE id = 2;` to test for the expected result.
+10. Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a comment with the text `Interesting post` from the user\_id of `3` to the blog post containing the text `Peculiar` (reply\_to will be null), then run `SELECT text_content FROM post_comments WHERE post_id = 2;` to test for the expected result.
 
 **Expected Result**
 
