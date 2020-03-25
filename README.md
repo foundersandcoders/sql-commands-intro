@@ -110,6 +110,164 @@ Indicates that this value is the unique identifier for this entry into the table
 
 Specifies that this value must match one in another table. The value it must match is specified after like this: `other_table_name(primary_key)`.
 
+## SQL Overview
+
+Here's a quick overview of some SQL commands. Don't forget every line must end with a semicolon.
+
+### Retrieving data
+
+#### [`SELECT`](https://www.w3schools.com/sql/sql_select.asp)
+
+Retrieves data from a table. You need to combine it with `FROM` to specify which table. For example:
+
+```sql
+SELECT first_name FROM users;
+```
+
+would retrieve the `first_name` column for every row in the `users` table.
+
+| first_name |
+| ---------- |
+| Alisha     |
+| Chelsea    |
+| ...        |
+
+Note you can provide comma-separated lists of column names and table names if you want to select multiple things. You can also use the `*` character to select all columns.
+
+#### [`WHERE`](https://www.w3schools.com/sql/sql_where.asp)
+
+This is a clause that qualifies a `SELECT`. It lets you filter which rows are retrieved based on the values in that row. For example:
+
+```sql
+SELECT first_name FROM users WHERE id = 1;
+```
+
+would retrive the first name column for any users with an ID of `1`.
+
+| first_name |
+| ---------- |
+| Alisha     |
+
+#### [`AND`, `OR` and `NOT`](https://www.w3schools.com/sql/sql_and_or.asp)
+
+These are operators for expressing logic in your `WHERE` clauses. They let you apply multiple conditions. For example:
+
+```sql
+SELECT first_name FROM users WHERE id = 1 OR id = 2;
+```
+
+would retrieve the first name column for any users with an ID of `1` _or_ `2`.
+
+| first_name |
+| ---------- |
+| Alisha     |
+| Chelsea    |
+
+#### [`LIKE`](https://www.w3schools.com/sql/sql_like.asp)
+
+This operator is used within a `WHERE` clause to specify a pattern the column value must match. There is a special pattern syntax: `%` represents zero or more characters, `_` represents a single character and a literal character (like `'a'`) represents itself. For example:
+
+```sql
+select text_content from blog_posts where text_content like 'F%';
+```
+
+would select the text content of any blog post where the text content started with the letter "F" and have any other characters afterwards.
+
+| text_content                                                                                                                                       |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay. |
+
+#### [`IN`](https://www.w3schools.com/sql/sql_in.asp)
+
+This operator lets you match against a list of values in your `WHERE` clause. For example:
+
+```sql
+SELECT first_name FROM users WHERE id IN (1, 2);
+```
+
+would select the first name column for any users with an ID of `1` or `2`.
+
+| first_name |
+| ---------- |
+| Alisha     |
+| Chelsea    |
+
+This is similar to the `OR` operator we saw above.
+
+#### `CASE`
+
+This expression lets you create a temporary column whose value is determined by some conditional logic (like an if/else in JS). The `CASE` expression goes in the list of column names, and finishes when you type `END`.
+
+```sql
+SELECT
+  username,
+  CASE
+    WHEN location = 'Saxilby, UK' THEN 'yeah, they do'
+    ELSE 'nah, they do not'
+  END
+FROM users;
+```
+
+would select the username column and show a new temporary column showing whether or not that user lives in Saxilby.
+
+| username  | case             |
+| --------- | ---------------- |
+| Sery1976  | nah, they do not |
+| Notne1991 | nah, they do not |
+| Moull1990 | nah, they do not |
+| Spont1935 | yeah, they do    |
+| Precand   | nah, they do not |
+| Ovion1948 | nah, they do not |
+| Thresuall | nah, they do not |
+| Brity1971 | yeah, they do    |
+
+#### `AS`
+
+This lets you create aliases, which are temporary columns with a specified name. This is useful combined with `CASE`, as we can give the `CASE` column a more descriptive name.
+
+```sql
+SELECT
+  username,
+  CASE
+    WHEN location = 'Saxilby, UK' THEN 'yeah, they do'
+    ELSE 'nah, they do not'
+  END AS lives_in_saxilby
+FROM users;
+```
+
+| username  | lives_in_saxilby |
+| --------- | ---------------- |
+| Sery1976  | nah, they do not |
+| Notne1991 | nah, they do not |
+| Moull1990 | nah, they do not |
+| Spont1935 | yeah, they do    |
+| Precand   | nah, they do not |
+| Ovion1948 | nah, they do not |
+| Thresuall | nah, they do not |
+| Brity1971 | yeah, they do    |
+
+### Creating and updating data
+
+#### [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp)
+
+Lets you add a new row into a table. You specify a table name and list of columns, then a list of values to insert. The values have to match positions with their respective columns (like function arguments in JS).
+
+```sql
+INSERT INTO users (username, first_name) VALUES ('oliverjam', 'oli');
+```
+
+would create a new user row with a username of `'oliverjam'` and first name of `'oli'`.
+
+#### [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp)
+
+Lets you change existing data in a table. You provide the table name, then the name and new value of each column. You also need to provide a `WHERE` clause to select which rows to update, otherwise **every** row will be changed.
+
+```sql
+UPDATE users SET first_name = 'oliver' WHERE username = 'oliverjam';
+```
+
+would update the first name of the user with username `"oliverjam"` to be `"oliver"`.
+
 ## Challenges
 
 1. Using [`SELECT`](https://www.w3schools.com/sql/sql_select.asp), retrieve all the information from the `users` table
