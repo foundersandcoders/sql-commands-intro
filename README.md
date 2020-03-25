@@ -338,7 +338,7 @@ Using the `WHERE` operator, [`LIKE`](https://www.w3schools.com/sql/sql_like.asp)
 
 ### Select posts using multiple conditions
 
-Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the user id and text content columns for posts with IDs of `3` or `6`.
+Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the user ID and text content columns for posts created by users with IDs of `3` or `6`.
 
 #### Expected Result
 
