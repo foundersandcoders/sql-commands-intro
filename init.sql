@@ -20,7 +20,6 @@ CREATE TABLE blog_posts (
 CREATE TABLE post_comments (
   id SERIAL PRIMARY KEY,
   post_id INTEGER REFERENCES blog_posts(id),
-  reply_to INTEGER REFERENCES post_comments(id),
   user_id INTEGER REFERENCES users(id),
   text_content TEXT
 );
@@ -67,10 +66,9 @@ INSERT INTO blog_posts (text_content, user_id) VALUES
   )
 ;
 
-INSERT INTO post_comments (post_id, reply_to, user_id, text_content) VALUES
+INSERT INTO post_comments (post_id, user_id, text_content) VALUES
   (
     4,
-    NULL,
     2,
     'Great blog post! Really nice. Would be good to have an English version though :)'
   )
