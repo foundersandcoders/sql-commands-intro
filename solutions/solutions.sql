@@ -17,11 +17,13 @@ SELECT user_id FROM blog_posts WHERE text_content LIKE '%departure%';
 SELECT user_id, text_content FROM blog_posts WHERE user_id IN (3, 6);
 
 -- Question 7
-SELECT id,
-       CASE WHEN age<20 THEN 'true'
-            ELSE 'false'
-       END AS teenager
-    FROM users;
+SELECT
+  id,
+  CASE WHEN age < 20
+    THEN true
+    ELSE false
+  END AS teenager
+FROM users;
 
 -- Question 8
 INSERT INTO blog_posts (text_content, user_id) VALUES ('Hello World', 1);
@@ -35,7 +37,6 @@ INSERT INTO post_comments (post_id, reply_to, user_id, text_content) VALUES
     (
       SELECT id FROM blog_posts WHERE text_content LIKE '%Peculiar%'
     ),
-    NULL,
     3,
     'Interesting post'
   )
