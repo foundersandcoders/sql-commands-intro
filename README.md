@@ -436,6 +436,7 @@ LEFT JOIN blog_posts ON users.id = blog_posts.user_id;
 | Precand   | Aenean blandit risus sed pellentesque vestibulum. Fusce in ultrices augue. Nunc interdum quis nibh non feugiat.                                                                                                        |
 | Ovion1948 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
 | Thresuall | Proin euismod arcu nec diam dictum, a eleifend sem placerat. Quisque ultrices fermentum mi, fermentum molestie mauris tincidunt sit amet.                                                                              |
+| Brity1971 |                                                                                                                                                                                                                        |
 
 `LEFT JOIN` selects one extra row here compared to `INNER JOIN`: the final user "Thresuall" who has no blog post.
 
