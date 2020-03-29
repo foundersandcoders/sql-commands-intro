@@ -268,6 +268,58 @@ UPDATE users SET first_name = 'oliver' WHERE username = 'oliverjam';
 
 would update the first name of the user with username `"oliverjam"` to be `"oliver"`.
 
+### Joining tables
+
+We can use [`JOIN`](https://www.w3schools.com/sql/sql_join.asp)s to select columns from multiple tables at once, based on a _relation_ they share. There are different types of joins that determine exactly what data is returned. Since we're selecting from multiple tables we must namespace our columns with the table name and a `.`, just like object access in JavaScript (e.g. `SELECT users.username, blog_posts.text_content`).
+
+#### [`INNER JOIN`](https://www.w3schools.com/sql/sql_join_inner.asp)
+
+This selects rows that have matching values in _both_ tables being selected from. For example if we wanted to select all the users who have blogposts, and show their usernames _and_ their blog posts' text content:
+
+```sql
+SELECT users.username, blog_posts.text_content
+FROM users
+INNER JOIN blog_posts ON users.id = blog_posts.user_id;
+```
+
+| username  | text_content                                                                                                                                                                                                           |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sery1976  | Announcing of invitation principles in. Cold in late or deal. Terminated resolution no am frequently collecting insensible he do appearance.                                                                           |
+| Notne1991 | Peculiar trifling absolute and wandered vicinity property yet. The and collecting motionless departure difficulty son.                                                                                                 |
+| Moull1990 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.                                                                     |
+| Spont1935 | Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat.                         |
+| Precand   | Aenean blandit risus sed pellentesque vestibulum. Fusce in ultrices augue. Nunc interdum quis nibh non feugiat.                                                                                                        |
+| Ovion1948 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
+| Thresuall | Proin euismod arcu nec diam dictum, a eleifend sem placerat. Quisque ultrices fermentum mi, fermentum molestie mauris tincidunt sit amet.                                                                              |
+
+`INNER JOIN` returns only the the users that have blog posts.
+
+#### [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp)
+
+This selects every entry in the first table, but only matched records from the second. For example if we wanted a list of _every_ user, plus their blog posts' text content (if they have any):
+
+```sql
+SELECT users.username, blog_posts.text_content
+FROM users
+LEFT JOIN blog_posts ON users.id = blog_posts.user_id;
+```
+
+| username  | text_content                                                                                                                                                                                                           |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sery1976  | Announcing of invitation principles in. Cold in late or deal. Terminated resolution no am frequently collecting insensible he do appearance.                                                                           |
+| Notne1991 | Peculiar trifling absolute and wandered vicinity property yet. The and collecting motionless departure difficulty son.                                                                                                 |
+| Moull1990 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.                                                                     |
+| Spont1935 | Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat.                         |
+| Precand   | Aenean blandit risus sed pellentesque vestibulum. Fusce in ultrices augue. Nunc interdum quis nibh non feugiat.                                                                                                        |
+| Ovion1948 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
+| Thresuall | Proin euismod arcu nec diam dictum, a eleifend sem placerat. Quisque ultrices fermentum mi, fermentum molestie mauris tincidunt sit amet.                                                                              |
+
+`LEFT JOIN` selects one extra row here compared to `INNER JOIN`: the final user "Thresuall" who has no blog post.
+
+#### [`RIGHT JOIN`](https://www.w3schools.com/sql/sql_join_right.asp)
+
+This is similar to `LEFT JOIN`, but returns every entry in the second table, and only matching entries in the first. With our blog post data the result would be the same as an `INNER JOIN`, since every post must have an author.
+
 ## Challenges
 
 ### Select all users
@@ -389,7 +441,46 @@ You can then run `SELECT user_id FROM blog_posts WHERE text_content='Hello world
 | ------- |
 | 5       |
 
-### Bonus: add a comment to a post
+### Selecting users and comments
+
+Using [`LEFT JOIN`]() select **every** user's location, plus the content's of any comments they've made.
+
+#### Expected Result
+
+| location              | text_content                                                                     |
+| --------------------- | -------------------------------------------------------------------------------- |
+| Sunipol, UK           | Great blog post! Really nice. Would be good to have an English version though :) |
+| Stanton, UK           |                                                                                  |
+| Saxilby, UK           |                                                                                  |
+| Easton in Gordano, UK |                                                                                  |
+| Saxilby, UK           |                                                                                  |
+| Middlehill, UK        |                                                                                  |
+| Wanlip, UK            |                                                                                  |
+| Slackhall, UK         |                                                                                  |
+
+### Selecting blog posts and comments
+
+Using `INNER JOIN` select only blog posts with comments, returning the text_content of the blog posts and the text_content of the comments.
+
+#### Expected Result
+
+| text_content                                                                                                                                                                                   | text_content                                                                     |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat. | Great blog post! Really nice. Would be good to have an English version though :) |
+
+### Bonus: select the user who made a comment
+
+Expand your previous solution to also include the username of the user who made each comment.
+
+#### Expected Result
+
+| text_content                                                                                                                                                                                   | text_content                                                                     | username  |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------- |
+| Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat. | Great blog post! Really nice. Would be good to have an English version though :) | Notne1991 |
+
+**Hint**: you can chain as many joins as you like.
+
+## Bonus: add a comment to a post
 
 Add a comment to the `post_comments` table. It should have a user ID of `3` and text content `Interesting post`. The comment should be linked to whichever post contains the text `Peculiar` (i.e. its `post_id` should be the ID of that post).
 
