@@ -192,7 +192,7 @@ would select the first name column for any users with an ID of `1` or `2`.
 
 This is similar to the `OR` operator we saw above.
 
-### `CASE`
+### [`CASE`](https://www.w3schools.com/sql/sql_case.asp)
 
 This expression lets you create a temporary column whose value is determined by some conditional logic (like an if/else in JS). The `CASE` expression goes in the list of column names, and finishes when you type `END`.
 
@@ -219,7 +219,7 @@ would select the username column and show a new temporary column showing whether
 | Thresuall | nah, they do not |
 | Brity1971 | yeah, they do    |
 
-### `AS`
+### [`AS`](https://www.w3schools.com/sql/sql_alias.asp)
 
 This lets you create aliases, which are temporary columns with a specified name. This is useful combined with `CASE`, as we can give the `CASE` column a more descriptive name.
 
@@ -439,7 +439,7 @@ LEFT JOIN blog_posts ON users.id = blog_posts.user_id;
 
 `LEFT JOIN` selects one extra row here compared to `INNER JOIN`: the final user "Thresuall" who has no blog post.
 
-#### [`RIGHT JOIN`](https://www.w3schools.com/sql/sql_join_right.asp)
+#### [`RIGHT JOIN`](https://www.w3schools.com/sql/sql_join_right.asp)
 
 This is similar to `LEFT JOIN`, but returns every entry in the second table, and only matching entries in the first. With our blog post data the result would be the same as an `INNER JOIN`, since every post must have an author.
 
@@ -447,7 +447,7 @@ This is similar to `LEFT JOIN`, but returns every entry in the second table, and
 
 #### Selecting users and comments
 
-Using [`LEFT JOIN`]() select **every** user's location, plus the content's of any comments they've made.
+Using [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp) select **every** user's location, plus the content's of any comments they've made.
 
 #### Expected Result
 
@@ -464,7 +464,7 @@ Using [`LEFT JOIN`]() select **every** user's location, plus the content's of an
 
 #### Selecting blog posts and comments
 
-Using `INNER JOIN` select only blog posts with comments, returning the text_content of the blog posts and the text_content of the comments.
+Using [`INNER JOIN`](https://www.w3schools.com/sql/sql_join_inner.asp) select only blog posts with comments, returning the text_content of the blog posts and the text_content of the comments.
 
 #### Expected Result
 
