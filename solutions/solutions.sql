@@ -32,6 +32,22 @@ INSERT INTO blog_posts (text_content, user_id) VALUES ('Hello World', 1);
 UPDATE blog_posts SET user_id=5 WHERE text_content='Hello World';
 
 -- Question 10
+SELECT users.location, post_comments.text_content
+FROM users
+LEFT JOIN post_comments ON users.id = post_comments.user_id;
+
+-- Question 11
+SELECT blog_posts.text_content, post_comments.text_content
+FROM blog_posts
+INNER JOIN post_comments ON blog_posts.id = post_comments.post_id;
+
+-- Question 12
+SELECT blog_posts.text_content, post_comments.text_content, users.username
+FROM blog_posts
+INNER JOIN post_comments ON blog_posts.id = post_comments.post_id
+INNER JOIN users ON users.id = post_comments.user_id;
+
+-- Question 13
 INSERT INTO post_comments (post_id, reply_to, user_id, text_content) VALUES
   (
     (
