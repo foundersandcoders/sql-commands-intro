@@ -110,13 +110,11 @@ Indicates that this value is the unique identifier for this entry into the table
 
 Specifies that this value must match one in another table. The value it must match is specified after like this: `other_table_name(primary_key)`.
 
-## SQL Overview
+## Retrieving data
 
-Here's a quick overview of some SQL commands. Don't forget every line must end with a semicolon.
+Here's a quick overview of some SQL commands used to retrieve data from a database.
 
-### Retrieving data
-
-#### [`SELECT`](https://www.w3schools.com/sql/sql_select.asp)
+### [`SELECT`](https://www.w3schools.com/sql/sql_select.asp)
 
 Retrieves data from a table. You need to combine it with `FROM` to specify which table. For example:
 
@@ -134,7 +132,7 @@ would retrieve the `first_name` column for every row in the `users` table.
 
 Note you can provide comma-separated lists of column names and table names if you want to select multiple things. You can also use the `*` character to select all columns.
 
-#### [`WHERE`](https://www.w3schools.com/sql/sql_where.asp)
+### [`WHERE`](https://www.w3schools.com/sql/sql_where.asp)
 
 This is a clause that qualifies a `SELECT`. It lets you filter which rows are retrieved based on the values in that row. For example:
 
@@ -148,7 +146,7 @@ would retrive the first name column for any users with an ID of `1`.
 | ---------- |
 | Alisha     |
 
-#### [`AND`, `OR` and `NOT`](https://www.w3schools.com/sql/sql_and_or.asp)
+### [`AND`, `OR` and `NOT`](https://www.w3schools.com/sql/sql_and_or.asp)
 
 These are operators for expressing logic in your `WHERE` clauses. They let you apply multiple conditions. For example:
 
@@ -163,7 +161,7 @@ would retrieve the first name column for any users with an ID of `1` _or_ `2`.
 | Alisha     |
 | Chelsea    |
 
-#### [`LIKE`](https://www.w3schools.com/sql/sql_like.asp)
+### [`LIKE`](https://www.w3schools.com/sql/sql_like.asp)
 
 This operator is used within a `WHERE` clause to specify a pattern the column value must match. There is a special pattern syntax: `%` represents zero or more characters, `_` represents a single character and a literal character (like `'a'`) represents itself. For example:
 
@@ -177,7 +175,7 @@ would select the text content of any blog post where the text content started wi
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay. |
 
-#### [`IN`](https://www.w3schools.com/sql/sql_in.asp)
+### [`IN`](https://www.w3schools.com/sql/sql_in.asp)
 
 This operator lets you match against a list of values in your `WHERE` clause. For example:
 
@@ -194,7 +192,7 @@ would select the first name column for any users with an ID of `1` or `2`.
 
 This is similar to the `OR` operator we saw above.
 
-#### `CASE`
+### `CASE`
 
 This expression lets you create a temporary column whose value is determined by some conditional logic (like an if/else in JS). The `CASE` expression goes in the list of column names, and finishes when you type `END`.
 
@@ -221,7 +219,7 @@ would select the username column and show a new temporary column showing whether
 | Thresuall | nah, they do not |
 | Brity1971 | yeah, they do    |
 
-#### `AS`
+### `AS`
 
 This lets you create aliases, which are temporary columns with a specified name. This is useful combined with `CASE`, as we can give the `CASE` column a more descriptive name.
 
@@ -246,9 +244,107 @@ FROM users;
 | Thresuall | nah, they do not |
 | Brity1971 | yeah, they do    |
 
-### Creating and updating data
+### Challenges
 
-#### [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp)
+#### Select all users
+
+Using [`SELECT`](https://www.w3schools.com/sql/sql_select.asp), retrieve all the information from the `users` table
+
+##### Expected Result
+
+| id  | username  | age | first_name | last_name | location              |
+| --- | --------- | --- | ---------- | --------- | --------------------- |
+| 1   | Sery1976  | 28  | Alisha     | Clayton   | Middlehill, UK        |
+| 2   | Notne1991 | 36  | Chelsea    | Cross     | Sunipol, UK           |
+| 3   | Moull1990 | 41  | Skye       | Hobbs     | Wanlip, UK            |
+| 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK           |
+| 5   | Precand   | 19  | Erin       | Gould     | Stanton, UK           |
+| 6   | Ovion1948 | 53  | Reece      | Sheppard  | Easton in Gordano, UK |
+| 7   | Thresuall | 21  | Daniel     | Grant     | Slackhall, UK         |
+| 8   | Brity1971 | 23  | Daniel     | Brennan   | Saxilby, UK           |
+
+#### Select specific columns
+
+Using `SELECT`, retrieve a list of _only_ usernames and locations from the `users` table
+
+**Expected Result**
+
+| username  | location              |
+| --------- | --------------------- |
+| Sery1976  | Middlehill, UK        |
+| Notne1991 | Sunipol, UK           |
+| Moull1990 | Wanlip, UK            |
+| Spont1935 | Saxilby, UK           |
+| Precand   | Stanton, UK           |
+| Ovion1948 | Easton in Gordano, UK |
+| Thresuall | Slackhall, UK         |
+| Brity1971 | Saxilby, UK           |
+
+#### Select users conditionally
+
+Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve every column for all users who are older than 50.
+
+##### Expected Result
+
+| id  | username  | age | first_name | last_name | location              |
+| --- | --------- | --- | ---------- | --------- | --------------------- |
+| 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK           |
+| 6   | Ovion1948 | 53  | Reece      | Sheppard  | Easton in Gordano, UK |
+
+#### Select users using multiple conditions
+
+Using `SELECT` and `WHERE`, retrieve the first, last name and location of the user who lives in `Saxilby, UK` and is older than 40.
+
+##### Expected Result
+
+| first_name | last_name | location    |
+| ---------- | --------- | ----------- |
+| Matthew    | Griffin   | Saxilby, UK |
+
+#### Select posts that match a pattern
+
+Using the `WHERE` operator, [`LIKE`](https://www.w3schools.com/sql/sql_like.asp), retrieve a list of user IDs that have posted blog posts that contain the word `departure` from the `blog_posts` table.
+
+##### Expected Result
+
+| user_id |
+| ------- |
+| 2       |
+| 3       |
+
+#### Select posts using multiple conditions
+
+Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the user ID and text content columns for posts created by users with IDs of `3` or `6`.
+
+##### Expected Result
+
+| user_id | text_content                                                                                                                                                                                                           |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3       | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.                                                                     |
+| 6       | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
+
+#### Selecting temporary conditional columns
+
+You need to find out which of your users are teenagers. Using [`CASE WHEN`](https://www.w3schools.com/sql/sql_case.asp) and [`AS`](https://www.w3schools.com/sql/sql_alias.asp), retrieve all users' `id` and a new column called `teenager` that is a boolean (true or false).
+
+##### Expected Result
+
+| id  | teenager |
+| --- | -------- |
+| 1   | f        |
+| 2   | f        |
+| 3   | f        |
+| 4   | f        |
+| 5   | t        |
+| 6   | f        |
+| 7   | f        |
+| 8   | f        |
+
+## Creating and updating data
+
+Here's an overview of SQL commands used to add data to a database.
+
+### [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp)
 
 Lets you add a new row into a table. You specify a table name and list of columns, then a list of values to insert. The values have to match positions with their respective columns (like function arguments in JS).
 
@@ -258,7 +354,7 @@ INSERT INTO users (username, first_name) VALUES ('oliverjam', 'oli');
 
 would create a new user row with a username of `'oliverjam'` and first name of `'oli'`.
 
-#### [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp)
+### [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp)
 
 Lets you change existing data in a table. You provide the table name, then the name and new value of each column. You also need to provide a `WHERE` clause to select which rows to update, otherwise **every** row will be changed.
 
@@ -268,7 +364,34 @@ UPDATE users SET first_name = 'oliver' WHERE username = 'oliverjam';
 
 would update the first name of the user with username `"oliverjam"` to be `"oliver"`.
 
-### Joining tables
+### Challenges
+
+#### Adding a new post
+
+Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a blog post with the text "Hello world" to the user with ID `1`.
+
+You can then run `SELECT text_content FROM blog_posts WHERE user_id = 1;` to test for the expected result.
+
+##### Expected Result
+
+| text_content                                                                                                                                 |
+| -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Announcing of invitation principles in. Cold in late or deal. Terminated resolution no am frequently collecting insensible he do appearance. |
+| Hello World                                                                                                                                  |
+
+#### Updating an existing post
+
+Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `5`. **Make sure you don't change any other posts**.
+
+You can then run `SELECT user_id FROM blog_posts WHERE text_content='Hello world';` to test for the expected result.
+
+##### Expected Result
+
+| user_id |
+| ------- |
+| 5       |
+
+### Combining tables
 
 We can use [`JOIN`](https://www.w3schools.com/sql/sql_join.asp)s to select columns from multiple tables at once, based on a _relation_ they share. There are different types of joins that determine exactly what data is returned. Since we're selecting from multiple tables we must namespace our columns with the table name and a `.`, just like object access in JavaScript (e.g. `SELECT users.username, blog_posts.text_content`).
 
@@ -320,128 +443,9 @@ LEFT JOIN blog_posts ON users.id = blog_posts.user_id;
 
 This is similar to `LEFT JOIN`, but returns every entry in the second table, and only matching entries in the first. With our blog post data the result would be the same as an `INNER JOIN`, since every post must have an author.
 
-## Challenges
+### Challenges
 
-### Select all users
-
-Using [`SELECT`](https://www.w3schools.com/sql/sql_select.asp), retrieve all the information from the `users` table
-
-#### Expected Result
-
-| id  | username  | age | first_name | last_name | location              |
-| --- | --------- | --- | ---------- | --------- | --------------------- |
-| 1   | Sery1976  | 28  | Alisha     | Clayton   | Middlehill, UK        |
-| 2   | Notne1991 | 36  | Chelsea    | Cross     | Sunipol, UK           |
-| 3   | Moull1990 | 41  | Skye       | Hobbs     | Wanlip, UK            |
-| 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK           |
-| 5   | Precand   | 19  | Erin       | Gould     | Stanton, UK           |
-| 6   | Ovion1948 | 53  | Reece      | Sheppard  | Easton in Gordano, UK |
-| 7   | Thresuall | 21  | Daniel     | Grant     | Slackhall, UK         |
-| 8   | Brity1971 | 23  | Daniel     | Brennan   | Saxilby, UK           |
-
-### Select specific columns
-
-Using `SELECT`, retrieve a list of _only_ usernames and locations from the `users` table
-
-**Expected Result**
-
-| username  | location              |
-| --------- | --------------------- |
-| Sery1976  | Middlehill, UK        |
-| Notne1991 | Sunipol, UK           |
-| Moull1990 | Wanlip, UK            |
-| Spont1935 | Saxilby, UK           |
-| Precand   | Stanton, UK           |
-| Ovion1948 | Easton in Gordano, UK |
-| Thresuall | Slackhall, UK         |
-| Brity1971 | Saxilby, UK           |
-
-### Select users conditionally
-
-Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve every column for all users who are older than 50.
-
-#### Expected Result
-
-| id  | username  | age | first_name | last_name | location              |
-| --- | --------- | --- | ---------- | --------- | --------------------- |
-| 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK           |
-| 6   | Ovion1948 | 53  | Reece      | Sheppard  | Easton in Gordano, UK |
-
-### Select users using multiple conditions
-
-Using `SELECT` and `WHERE`, retrieve the first, last name and location of the user who lives in `Saxilby, UK` and is older than 40.
-
-#### Expected Result
-
-| first_name | last_name | location    |
-| ---------- | --------- | ----------- |
-| Matthew    | Griffin   | Saxilby, UK |
-
-### Select posts that match a pattern
-
-Using the `WHERE` operator, [`LIKE`](https://www.w3schools.com/sql/sql_like.asp), retrieve a list of user IDs that have posted blog posts that contain the word `departure` from the `blog_posts` table.
-
-#### Expected Result
-
-| user_id |
-| ------- |
-| 2       |
-| 3       |
-
-### Select posts using multiple conditions
-
-Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the user ID and text content columns for posts created by users with IDs of `3` or `6`.
-
-#### Expected Result
-
-| user_id | text_content                                                                                                                                                                                                           |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 3       | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.                                                                     |
-| 6       | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
-
-### Selecting temporary conditional columns
-
-You need to find out which of your users are teenagers. Using [`CASE WHEN`](https://www.w3schools.com/sql/sql_case.asp) and [`AS`](https://www.w3schools.com/sql/sql_alias.asp), retrieve all users' `id` and a new column called `teenager` that is a boolean (true or false).
-
-#### Expected Result
-
-| id  | teenager |
-| --- | -------- |
-| 1   | f        |
-| 2   | f        |
-| 3   | f        |
-| 4   | f        |
-| 5   | t        |
-| 6   | f        |
-| 7   | f        |
-| 8   | f        |
-
-### Adding a new post
-
-Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a blog post with the text "Hello world" to the user with ID `1`.
-
-You can then run `SELECT text_content FROM blog_posts WHERE user_id = 1;` to test for the expected result.
-
-#### Expected Result
-
-| text_content                                                                                                                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Announcing of invitation principles in. Cold in late or deal. Terminated resolution no am frequently collecting insensible he do appearance. |
-| Hello World                                                                                                                                  |
-
-### Updating an existing post
-
-Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `5`. **Make sure you don't change any other posts**.
-
-You can then run `SELECT user_id FROM blog_posts WHERE text_content='Hello world';` to test for the expected result.
-
-#### Expected Result
-
-| user_id |
-| ------- |
-| 5       |
-
-### Selecting users and comments
+#### Selecting users and comments
 
 Using [`LEFT JOIN`]() select **every** user's location, plus the content's of any comments they've made.
 
@@ -458,7 +462,7 @@ Using [`LEFT JOIN`]() select **every** user's location, plus the content's of an
 | Wanlip, UK            |                                                                                  |
 | Slackhall, UK         |                                                                                  |
 
-### Selecting blog posts and comments
+#### Selecting blog posts and comments
 
 Using `INNER JOIN` select only blog posts with comments, returning the text_content of the blog posts and the text_content of the comments.
 
@@ -468,11 +472,11 @@ Using `INNER JOIN` select only blog posts with comments, returning the text_cont
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat. | Great blog post! Really nice. Would be good to have an English version though :) |
 
-### Bonus: select the user who made a comment
+#### Bonus: select the user who made a comment
 
 Expand your previous solution to also include the username of the user who made each comment.
 
-#### Expected Result
+##### Expected Result
 
 | text_content                                                                                                                                                                                   | text_content                                                                     | username  |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------- |
@@ -480,7 +484,9 @@ Expand your previous solution to also include the username of the user who made 
 
 **Hint**: you can chain as many joins as you like.
 
-## Bonus: add a comment to a post
+## Bonus: Nested queries
+
+### Add a comment to a post
 
 Add a comment to the `post_comments` table. It should have a user ID of `3` and text content `Interesting post`. The comment should be linked to whichever post contains the text `Peculiar` (i.e. its `post_id` should be the ID of that post).
 
