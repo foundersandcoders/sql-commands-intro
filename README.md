@@ -269,16 +269,13 @@ Would return:
 
 #### Adding a new post
 
-Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a blog post with the text "Hello world" to the user with ID `1`.
-
-You can then run `SELECT text_content FROM blog_posts WHERE user_id = 1;` to test for the expected result.
+Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp) and `RETURNING`, add a blog post with the text "Hello world" to the user with ID `1`. Return the text content and user ID of the inserted post.
 
 ##### Expected Result
 
-| text_content                            |
-| --------------------------------------- |
-| Announcing of invitation principles in. |
-| Hello World                             |
+| text_content | user_id |
+| ------------ | ------- |
+| Hello World  | 1       |
 
 #### Updating an existing post
 
