@@ -301,8 +301,8 @@ Would return:
 
 | id  | username  |
 | --- | --------- |
-| 0   | oliverjam |
-| 1   | oli       |
+| 1   | oliverjam |
+| 2   | oli       |
 
 ### Creating and updating data challenges
 
@@ -321,7 +321,9 @@ Would return:
 
    ```sql
    INSERT INTO blog_posts (text_content, user_id)
-     VALUES ('Hello World', 1);
+     VALUES ('Hello World', 1)
+     RETURNING text_content, user_id
+   ;
    ```
 
    </details>
