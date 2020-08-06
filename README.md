@@ -180,50 +180,89 @@ This is similar to the `OR` operator we saw above.
 
 ### Retrieving data challenges
 
-#### Select specific columns
+1. #### Select specific columns
 
-Using [`SELECT`](https://www.w3schools.com/sql/sql_select.asp), retrieve a list of _only_ usernames and locations from the `users` table
+   Using [`SELECT`](https://www.w3schools.com/sql/sql_select.asp), retrieve a list of _only_ usernames and locations from the `users` table
 
-**Expected Result**
+   **Expected Result**
 
-| username  | location       |
-| --------- | -------------- |
-| Sery1976  | Middlehill, UK |
-| Notne1991 | Sunipol, UK    |
-| Moull1990 | Wanlip, UK     |
-| Spont1935 | Saxilby, UK    |
+   | username  | location       |
+   | --------- | -------------- |
+   | Sery1976  | Middlehill, UK |
+   | Notne1991 | Sunipol, UK    |
+   | Moull1990 | Wanlip, UK     |
+   | Spont1935 | Saxilby, UK    |
 
-#### Select users conditionally
+   <details>
+   <summary>Solution</summary>
 
-Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve every column for all users who are older than 40.
+   ```sql
+   SELECT username, location FROM users;
+   ```
 
-##### Expected Result
+   </details>
 
-| id  | username  | age | first_name | last_name | location    |
-| --- | --------- | --- | ---------- | --------- | ----------- |
-| 3   | Moull1990 | 41  | Skye       | Hobbs     | Wanlip, UK  |
-| 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK |
+1. #### Select users conditionally
 
-#### Select users using multiple conditions
+   Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve every column for all users who are older than 40.
 
-Using `SELECT` and `WHERE`, retrieve the first, last name and location of the user who lives in `Saxilby, UK` and is older than 40.
+   ##### Expected Result
 
-##### Expected Result
+   | id  | username  | age | first_name | last_name | location    |
+   | --- | --------- | --- | ---------- | --------- | ----------- |
+   | 3   | Moull1990 | 41  | Skye       | Hobbs     | Wanlip, UK  |
+   | 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK |
 
-| first_name | last_name | location    |
-| ---------- | --------- | ----------- |
-| Matthew    | Griffin   | Saxilby, UK |
+   <details>
+   <summary>Solution</summary>
 
-#### Select posts using multiple conditions
+   ```sql
+   SELECT * FROM users
+     WHERE age > 40;
+   ```
 
-Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the user ID and text content columns for posts created by users with IDs of `2` or `3`.
+   </details>
 
-##### Expected Result
+1. #### Select users using multiple conditions
 
-| user_id | text_content                                                          |
-| ------- | --------------------------------------------------------------------- |
-| 2       | Peculiar trifling absolute and wandered vicinity property yet. decay. |
-| 3       | Far stairs now coming bed oppose hunted become his.                   |
+   Using `SELECT` and `WHERE`, retrieve the first, last name and location of the user who lives in `Saxilby, UK` and is older than 40.
+
+   ##### Expected Result
+
+   | first_name | last_name | location    |
+   | ---------- | --------- | ----------- |
+   | Matthew    | Griffin   | Saxilby, UK |
+
+   <details>
+   <summary>Solution</summary>
+
+   ```sql
+   SELECT first_name, last_name, location FROM users
+     WHERE location = 'Saxilby, UK' AND age > 40;
+   ```
+
+   </details>
+
+1. #### Select posts using multiple conditions
+
+   Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the user ID and text content columns for posts created by users with IDs of `2` or `3`.
+
+   ##### Expected Result
+
+   | user_id | text_content                                                          |
+   | ------- | --------------------------------------------------------------------- |
+   | 2       | Peculiar trifling absolute and wandered vicinity property yet. decay. |
+   | 3       | Far stairs now coming bed oppose hunted become his.                   |
+
+   <details>
+   <summary>Solution</summary>
+
+   ```sql
+   SELECT user_id, text_content FROM blog_posts
+     WHERE user_id IN (2, 3);
+   ```
+
+   </details>
 
 ## Creating and updating data
 
@@ -267,27 +306,47 @@ Would return:
 
 ### Creating and updating data challenges
 
-#### Adding a new post
+1. #### Adding a new post
 
-Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp) and `RETURNING`, add a blog post with the text "Hello world" to the user with ID `1`. Return the text content and user ID of the inserted post.
+   Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp) and `RETURNING`, add a blog post with the text "Hello world" to the user with ID `1`. Return the text content and user ID of the inserted post.
 
-##### Expected Result
+   ##### Expected Result
 
-| text_content | user_id |
-| ------------ | ------- |
-| Hello World  | 1       |
+   | text_content | user_id |
+   | ------------ | ------- |
+   | Hello World  | 1       |
 
-#### Updating an existing post
+   <details>
+   <summary>Solution</summary>
 
-Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `2`. **Make sure you don't change any other posts**.
+   ```sql
+   INSERT INTO blog_posts (text_content, user_id)
+     VALUES ('Hello World', 1);
+   ```
 
-You can then run `SELECT user_id FROM blog_posts WHERE text_content='Hello world';` to test for the expected result.
+   </details>
 
-##### Expected Result
+1. #### Updating an existing post
 
-| user_id |
-| ------- |
-| 5       |
+   Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `2`. **Make sure you don't change any other posts**.
+
+   You can then run `SELECT user_id FROM blog_posts WHERE text_content='Hello world';` to test for the expected result.
+
+   ##### Expected Result
+
+   | user_id |
+   | ------- |
+   | 5       |
+
+   <details>
+   <summary>Solution</summary>
+
+   ```sql
+   UPDATE blog_posts SET user_id=2
+     WHERE text_content='Hello World';
+   ```
+
+   </details>
 
 ## Combining tables
 
@@ -299,8 +358,8 @@ This selects rows that have matching values in _both_ tables being selected from
 
 ```sql
 SELECT users.username, blog_posts.text_content
-FROM users
-INNER JOIN blog_posts ON users.id = blog_posts.user_id;
+  FROM users INNER JOIN blog_posts
+    ON users.id = blog_posts.user_id;
 ```
 
 ![Venn diagram of an inner join—only the overlap of two circles is highlighted](diagrams/inner-join.png)
@@ -321,8 +380,8 @@ This selects every entry in the first table, but only matched records from the s
 
 ```sql
 SELECT users.username, blog_posts.text_content
-FROM users
-LEFT JOIN blog_posts ON users.id = blog_posts.user_id;
+  FROM users LEFT JOIN blog_posts
+    ON users.id = blog_posts.user_id;
 ```
 
 | username  | text_content                                                       |
@@ -342,40 +401,74 @@ This is similar to `LEFT JOIN`, but returns every entry in the second table, and
 
 ### Combining tables challenges
 
-#### Selecting users and comments
+1. #### Selecting users and comments
 
-Using [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp) select **every** user's location, plus the content's of any comments they've made.
+   Using [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp) select **every** user's location, plus the content's of any comments they've made.
 
-##### Expected Result
+   ##### Expected Result
 
-| location       | text_content     |
-| -------------- | ---------------- |
-| Middlehill, UK |                  |
-| Sunipol, UK    | Great blog post! |
-| Wanlip, UK     |                  |
-| Saxilby, UK    |                  |
+   | location       | text_content     |
+   | -------------- | ---------------- |
+   | Middlehill, UK |                  |
+   | Sunipol, UK    | Great blog post! |
+   | Wanlip, UK     |                  |
+   | Saxilby, UK    |                  |
 
-#### Selecting blog posts and comments
+   <details>
+   <summary>Solution</summary>
 
-Using [`INNER JOIN`](https://www.w3schools.com/sql/sql_join_inner.asp) select only blog posts with comments, returning the text_content of the blog posts and the text_content of the comments.
+   ```sql
+   SELECT users.location, post_comments.text_content
+     FROM users
+     LEFT JOIN post_comments ON users.id = post_comments.user_id;
+   ```
 
-##### Expected Result
+   </details>
 
-| text_content                                        | text_content     |
-| --------------------------------------------------- | ---------------- |
-| Far stairs now coming bed oppose hunted become his. | Great blog post! |
+1. #### Selecting blog posts and comments
 
-#### Bonus: select the user who made a comment
+   Using [`INNER JOIN`](https://www.w3schools.com/sql/sql_join_inner.asp) select only blog posts with comments, returning the text_content of the blog posts and the text_content of the comments.
 
-Expand your previous solution to also include the username of the user who made each comment.
+   ##### Expected Result
 
-##### Expected Result
+   | text_content                                        | text_content     |
+   | --------------------------------------------------- | ---------------- |
+   | Far stairs now coming bed oppose hunted become his. | Great blog post! |
 
-| text_content                                        | text_content     | username  |
-| --------------------------------------------------- | ---------------- | --------- |
-| Far stairs now coming bed oppose hunted become his. | Great blog post! | Notne1991 |
+   <details>
+   <summary>Solution</summary>
 
-**Hint**: you can use more than one join.
+   ```sql
+   SELECT blog_posts.text_content, post_comments.text_content
+     FROM blog_posts
+     INNER JOIN post_comments ON blog_posts.id = post_comments.post_id;
+   ```
+
+   </details>
+
+1. #### Bonus: select the user who made a comment
+
+   Expand your previous solution to also include the username of the user who made each comment.
+
+   ##### Expected Result
+
+   | text_content                                        | text_content     | username  |
+   | --------------------------------------------------- | ---------------- | --------- |
+   | Far stairs now coming bed oppose hunted become his. | Great blog post! | Notne1991 |
+
+   **Hint**: you can use more than one join.
+
+   <details>
+   <summary>Solution</summary>
+
+   ```sql
+   SELECT blog_posts.text_content, post_comments.text_content, users.username
+     FROM blog_posts
+     INNER JOIN post_comments ON blog_posts.id = post_comments.post_id
+     INNER JOIN users ON users.id = post_comments.user_id;
+   ```
+
+   </details>
 
 ## Bonus: Sub queries
 
@@ -404,3 +497,21 @@ You can then run `SELECT text_content FROM post_comments WHERE post_id = 2;` to 
 | text_content     |
 | ---------------- |
 | Interesting post |
+
+<details>
+  <summary>Solution</summary>
+
+```sql
+INSERT INTO post_comments (post_id, reply_to, user_id, text_content)
+  VALUES (
+    (
+      SELECT id FROM blog_posts
+        WHERE text_content = 'Peculiar trifling absolute and wandered vicinity property yet.'
+    ),
+    3,
+    'Interesting post'
+  )
+;
+```
+
+</details>
