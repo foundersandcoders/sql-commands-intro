@@ -161,20 +161,6 @@ would retrieve the first name column for any users with an ID of `1` _or_ `2`.
 | Alisha     |
 | Chelsea    |
 
-### [`LIKE`](https://www.w3schools.com/sql/sql_like.asp)
-
-This operator is used within a `WHERE` clause to specify a pattern the column value must match. There is a special pattern syntax: `%` represents zero or more characters, `_` represents a single character and a literal character (like `'a'`) represents itself. For example:
-
-```sql
-select text_content from blog_posts where text_content like 'F%';
-```
-
-would select the text content of any blog post where the text content started with the letter "F" and have any other characters afterwards.
-
-| text_content                                                                                                                                       |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay. |
-
 ### [`IN`](https://www.w3schools.com/sql/sql_in.asp)
 
 This operator lets you match against a list of values in your `WHERE` clause. For example:
@@ -191,58 +177,6 @@ would select the first name column for any users with an ID of `1` or `2`.
 | Chelsea    |
 
 This is similar to the `OR` operator we saw above.
-
-### [`CASE`](https://www.w3schools.com/sql/sql_case.asp)
-
-This expression lets you create a temporary column whose value is determined by some conditional logic (like an if/else in JS). The `CASE` expression goes in the list of column names, and finishes when you type `END`.
-
-```sql
-SELECT
-  username,
-  CASE
-    WHEN location = 'Saxilby, UK' THEN 'yeah, they do'
-    ELSE 'nah, they do not'
-  END
-FROM users;
-```
-
-would select the username column and show a new temporary column showing whether or not that user lives in Saxilby.
-
-| username  | case             |
-| --------- | ---------------- |
-| Sery1976  | nah, they do not |
-| Notne1991 | nah, they do not |
-| Moull1990 | nah, they do not |
-| Spont1935 | yeah, they do    |
-| Precand   | nah, they do not |
-| Ovion1948 | nah, they do not |
-| Thresuall | nah, they do not |
-| Brity1971 | yeah, they do    |
-
-### [`AS`](https://www.w3schools.com/sql/sql_alias.asp)
-
-This lets you create aliases, which are temporary columns with a specified name. This is useful combined with `CASE`, as we can give the `CASE` column a more descriptive name.
-
-```sql
-SELECT
-  username,
-  CASE
-    WHEN location = 'Saxilby, UK' THEN 'yeah, they do'
-    ELSE 'nah, they do not'
-  END AS lives_in_saxilby
-FROM users;
-```
-
-| username  | lives_in_saxilby |
-| --------- | ---------------- |
-| Sery1976  | nah, they do not |
-| Notne1991 | nah, they do not |
-| Moull1990 | nah, they do not |
-| Spont1935 | yeah, they do    |
-| Precand   | nah, they do not |
-| Ovion1948 | nah, they do not |
-| Thresuall | nah, they do not |
-| Brity1971 | yeah, they do    |
 
 ### Retrieving data challenges
 
@@ -301,17 +235,6 @@ Using `SELECT` and `WHERE`, retrieve the first, last name and location of the us
 | ---------- | --------- | ----------- |
 | Matthew    | Griffin   | Saxilby, UK |
 
-#### Select posts that match a pattern
-
-Using the `WHERE` operator, [`LIKE`](https://www.w3schools.com/sql/sql_like.asp), retrieve a list of user IDs that have posted blog posts that contain the word `departure` from the `blog_posts` table.
-
-##### Expected Result
-
-| user_id |
-| ------- |
-| 2       |
-| 3       |
-
 #### Select posts using multiple conditions
 
 Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the user ID and text content columns for posts created by users with IDs of `3` or `6`.
@@ -322,23 +245,6 @@ Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the
 | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 3       | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.                                                                     |
 | 6       | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
-
-#### Selecting temporary conditional columns
-
-You need to find out which of your users are teenagers. Using [`CASE WHEN`](https://www.w3schools.com/sql/sql_case.asp) and [`AS`](https://www.w3schools.com/sql/sql_alias.asp), retrieve all users' `id` and a new column called `teenager` that is a boolean (true or false).
-
-##### Expected Result
-
-| id  | teenager |
-| --- | -------- |
-| 1   | f        |
-| 2   | f        |
-| 3   | f        |
-| 4   | f        |
-| 5   | t        |
-| 6   | f        |
-| 7   | f        |
-| 8   | f        |
 
 ## Creating and updating data
 

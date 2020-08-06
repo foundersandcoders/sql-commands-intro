@@ -10,20 +10,8 @@ SELECT * FROM users WHERE age > 50;
 -- Question 4
 SELECT first_name, last_name, location FROM users WHERE location = 'Saxilby, UK' AND age > 40;
 
--- Question 5
-SELECT user_id FROM blog_posts WHERE text_content LIKE '%departure%';
-
 -- Question 6
 SELECT user_id, text_content FROM blog_posts WHERE user_id IN (3, 6);
-
--- Question 7
-SELECT
-  id,
-  CASE WHEN age < 20
-    THEN true
-    ELSE false
-  END AS teenager
-FROM users;
 
 -- Question 8
 INSERT INTO blog_posts (text_content, user_id) VALUES ('Hello World', 1);
