@@ -161,20 +161,6 @@ would retrieve the first name column for any users with an ID of `1` _or_ `2`.
 | Alisha     |
 | Chelsea    |
 
-### [`LIKE`](https://www.w3schools.com/sql/sql_like.asp)
-
-This operator is used within a `WHERE` clause to specify a pattern the column value must match. There is a special pattern syntax: `%` represents zero or more characters, `_` represents a single character and a literal character (like `'a'`) represents itself. For example:
-
-```sql
-select text_content from blog_posts where text_content like 'F%';
-```
-
-would select the text content of any blog post where the text content started with the letter "F" and have any other characters afterwards.
-
-| text_content                                                                                                                                       |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay. |
-
 ### [`IN`](https://www.w3schools.com/sql/sql_in.asp)
 
 This operator lets you match against a list of values in your `WHERE` clause. For example:
@@ -192,153 +178,91 @@ would select the first name column for any users with an ID of `1` or `2`.
 
 This is similar to the `OR` operator we saw above.
 
-### [`CASE`](https://www.w3schools.com/sql/sql_case.asp)
+### Retrieving data challenges
 
-This expression lets you create a temporary column whose value is determined by some conditional logic (like an if/else in JS). The `CASE` expression goes in the list of column names, and finishes when you type `END`.
+1. #### Select specific columns
 
-```sql
-SELECT
-  username,
-  CASE
-    WHEN location = 'Saxilby, UK' THEN 'yeah, they do'
-    ELSE 'nah, they do not'
-  END
-FROM users;
-```
+   Using [`SELECT`](https://www.w3schools.com/sql/sql_select.asp), retrieve a list of _only_ usernames and locations from the `users` table
 
-would select the username column and show a new temporary column showing whether or not that user lives in Saxilby.
+   **Expected Result**
 
-| username  | case             |
-| --------- | ---------------- |
-| Sery1976  | nah, they do not |
-| Notne1991 | nah, they do not |
-| Moull1990 | nah, they do not |
-| Spont1935 | yeah, they do    |
-| Precand   | nah, they do not |
-| Ovion1948 | nah, they do not |
-| Thresuall | nah, they do not |
-| Brity1971 | yeah, they do    |
+   | username  | location       |
+   | --------- | -------------- |
+   | Sery1976  | Middlehill, UK |
+   | Notne1991 | Sunipol, UK    |
+   | Moull1990 | Wanlip, UK     |
+   | Spont1935 | Saxilby, UK    |
 
-### [`AS`](https://www.w3schools.com/sql/sql_alias.asp)
+   <details>
+   <summary>Solution</summary>
 
-This lets you create aliases, which are temporary columns with a specified name. This is useful combined with `CASE`, as we can give the `CASE` column a more descriptive name.
+   ```sql
+   SELECT username, location FROM users;
+   ```
 
-```sql
-SELECT
-  username,
-  CASE
-    WHEN location = 'Saxilby, UK' THEN 'yeah, they do'
-    ELSE 'nah, they do not'
-  END AS lives_in_saxilby
-FROM users;
-```
+   </details>
 
-| username  | lives_in_saxilby |
-| --------- | ---------------- |
-| Sery1976  | nah, they do not |
-| Notne1991 | nah, they do not |
-| Moull1990 | nah, they do not |
-| Spont1935 | yeah, they do    |
-| Precand   | nah, they do not |
-| Ovion1948 | nah, they do not |
-| Thresuall | nah, they do not |
-| Brity1971 | yeah, they do    |
+1. #### Select users conditionally
 
-### Challenges
+   Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve every column for all users who are older than 40.
 
-#### Select all users
+   ##### Expected Result
 
-Using [`SELECT`](https://www.w3schools.com/sql/sql_select.asp), retrieve all the information from the `users` table
+   | id  | username  | age | first_name | last_name | location    |
+   | --- | --------- | --- | ---------- | --------- | ----------- |
+   | 3   | Moull1990 | 41  | Skye       | Hobbs     | Wanlip, UK  |
+   | 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK |
 
-##### Expected Result
+   <details>
+   <summary>Solution</summary>
 
-| id  | username  | age | first_name | last_name | location              |
-| --- | --------- | --- | ---------- | --------- | --------------------- |
-| 1   | Sery1976  | 28  | Alisha     | Clayton   | Middlehill, UK        |
-| 2   | Notne1991 | 36  | Chelsea    | Cross     | Sunipol, UK           |
-| 3   | Moull1990 | 41  | Skye       | Hobbs     | Wanlip, UK            |
-| 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK           |
-| 5   | Precand   | 19  | Erin       | Gould     | Stanton, UK           |
-| 6   | Ovion1948 | 53  | Reece      | Sheppard  | Easton in Gordano, UK |
-| 7   | Thresuall | 21  | Daniel     | Grant     | Slackhall, UK         |
-| 8   | Brity1971 | 23  | Daniel     | Brennan   | Saxilby, UK           |
+   ```sql
+   SELECT * FROM users
+     WHERE age > 40;
+   ```
 
-#### Select specific columns
+   </details>
 
-Using `SELECT`, retrieve a list of _only_ usernames and locations from the `users` table
+1. #### Select users using multiple conditions
 
-**Expected Result**
+   Using `SELECT` and `WHERE`, retrieve the first, last name and location of the user who lives in `Saxilby, UK` and is older than 40.
 
-| username  | location              |
-| --------- | --------------------- |
-| Sery1976  | Middlehill, UK        |
-| Notne1991 | Sunipol, UK           |
-| Moull1990 | Wanlip, UK            |
-| Spont1935 | Saxilby, UK           |
-| Precand   | Stanton, UK           |
-| Ovion1948 | Easton in Gordano, UK |
-| Thresuall | Slackhall, UK         |
-| Brity1971 | Saxilby, UK           |
+   ##### Expected Result
 
-#### Select users conditionally
+   | first_name | last_name | location    |
+   | ---------- | --------- | ----------- |
+   | Matthew    | Griffin   | Saxilby, UK |
 
-Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve every column for all users who are older than 50.
+   <details>
+   <summary>Solution</summary>
 
-##### Expected Result
+   ```sql
+   SELECT first_name, last_name, location FROM users
+     WHERE location = 'Saxilby, UK' AND age > 40;
+   ```
 
-| id  | username  | age | first_name | last_name | location              |
-| --- | --------- | --- | ---------- | --------- | --------------------- |
-| 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK           |
-| 6   | Ovion1948 | 53  | Reece      | Sheppard  | Easton in Gordano, UK |
+   </details>
 
-#### Select users using multiple conditions
+1. #### Select posts using multiple conditions
 
-Using `SELECT` and `WHERE`, retrieve the first, last name and location of the user who lives in `Saxilby, UK` and is older than 40.
+   Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the user ID and text content columns for posts created by users with IDs of `2` or `3`.
 
-##### Expected Result
+   ##### Expected Result
 
-| first_name | last_name | location    |
-| ---------- | --------- | ----------- |
-| Matthew    | Griffin   | Saxilby, UK |
+   | user_id | text_content                                                          |
+   | ------- | --------------------------------------------------------------------- |
+   | 2       | Peculiar trifling absolute and wandered vicinity property yet. decay. |
+   | 3       | Far stairs now coming bed oppose hunted become his.                   |
 
-#### Select posts that match a pattern
+   <details>
+   <summary>Solution</summary>
 
-Using the `WHERE` operator, [`LIKE`](https://www.w3schools.com/sql/sql_like.asp), retrieve a list of user IDs that have posted blog posts that contain the word `departure` from the `blog_posts` table.
+   ```sql
+   SELECT user_id, text_content FROM blog_posts
+     WHERE user_id IN (2, 3);
+   ```
 
-##### Expected Result
-
-| user_id |
-| ------- |
-| 2       |
-| 3       |
-
-#### Select posts using multiple conditions
-
-Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the user ID and text content columns for posts created by users with IDs of `3` or `6`.
-
-##### Expected Result
-
-| user_id | text_content                                                                                                                                                                                                           |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 3       | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.                                                                     |
-| 6       | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
-
-#### Selecting temporary conditional columns
-
-You need to find out which of your users are teenagers. Using [`CASE WHEN`](https://www.w3schools.com/sql/sql_case.asp) and [`AS`](https://www.w3schools.com/sql/sql_alias.asp), retrieve all users' `id` and a new column called `teenager` that is a boolean (true or false).
-
-##### Expected Result
-
-| id  | teenager |
-| --- | -------- |
-| 1   | f        |
-| 2   | f        |
-| 3   | f        |
-| 4   | f        |
-| 5   | t        |
-| 6   | f        |
-| 7   | f        |
-| 8   | f        |
+   </details>
 
 ## Creating and updating data
 
@@ -364,132 +288,207 @@ UPDATE users SET first_name = 'oliver' WHERE username = 'oliverjam';
 
 would update the first name of the user with username `"oliverjam"` to be `"oliver"`.
 
-### Challenges
+### `RETURNING`
 
-#### Adding a new post
+You can access the created/changed rows with a `RETURNING` clause after your `INSERT` or `UPDATE`. This lets you query the inserted rows using the same syntax as a `SELECT`. It's primarily used to get auto-generated values like IDs without having to do a whole separate `SELECT` query.
 
-Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp), add a blog post with the text "Hello world" to the user with ID `1`.
+```sql
+INSERT INTO users (username, first_name) VALUES ('oliverjam', 'oli')
+  RETURNING id, username;
+```
 
-You can then run `SELECT text_content FROM blog_posts WHERE user_id = 1;` to test for the expected result.
+Would return:
 
-##### Expected Result
+| id  | username  |
+| --- | --------- |
+| 0   | oliverjam |
+| 1   | oli       |
 
-| text_content                                                                                                                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Announcing of invitation principles in. Cold in late or deal. Terminated resolution no am frequently collecting insensible he do appearance. |
-| Hello World                                                                                                                                  |
+### Creating and updating data challenges
 
-#### Updating an existing post
+1. #### Adding a new post
 
-Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `5`. **Make sure you don't change any other posts**.
+   Using [`INSERT INTO`](https://www.w3schools.com/sql/sql_insert.asp) and `RETURNING`, add a blog post with the text "Hello world" to the user with ID `1`. Return the text content and user ID of the inserted post.
 
-You can then run `SELECT user_id FROM blog_posts WHERE text_content='Hello world';` to test for the expected result.
+   ##### Expected Result
 
-##### Expected Result
+   | text_content | user_id |
+   | ------------ | ------- |
+   | Hello World  | 1       |
 
-| user_id |
-| ------- |
-| 5       |
+   <details>
+   <summary>Solution</summary>
 
-### Combining tables
+   ```sql
+   INSERT INTO blog_posts (text_content, user_id)
+     VALUES ('Hello World', 1);
+   ```
+
+   </details>
+
+1. #### Updating an existing post
+
+   Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `2`. **Make sure you don't change any other posts**.
+
+   You can then run `SELECT user_id FROM blog_posts WHERE text_content='Hello world';` to test for the expected result.
+
+   ##### Expected Result
+
+   | user_id |
+   | ------- |
+   | 5       |
+
+   <details>
+   <summary>Solution</summary>
+
+   ```sql
+   UPDATE blog_posts SET user_id=2
+     WHERE text_content='Hello World';
+   ```
+
+   </details>
+
+## Combining tables
 
 We can use [`JOIN`](https://www.w3schools.com/sql/sql_join.asp)s to select columns from multiple tables at once, based on a _relation_ they share. There are different types of joins that determine exactly what data is returned. Since we're selecting from multiple tables we must namespace our columns with the table name and a `.`, just like object access in JavaScript (e.g. `SELECT users.username, blog_posts.text_content`).
 
-#### [`INNER JOIN`](https://www.w3schools.com/sql/sql_join_inner.asp)
+### [`INNER JOIN`](https://www.w3schools.com/sql/sql_join_inner.asp)
 
 This selects rows that have matching values in _both_ tables being selected from. For example if we wanted to select all the users who have blogposts, and show their usernames _and_ their blog posts' text content:
 
 ```sql
 SELECT users.username, blog_posts.text_content
-FROM users
-INNER JOIN blog_posts ON users.id = blog_posts.user_id;
+  FROM users INNER JOIN blog_posts
+    ON users.id = blog_posts.user_id;
 ```
 
-| username  | text_content                                                                                                                                                                                                           |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sery1976  | Announcing of invitation principles in. Cold in late or deal. Terminated resolution no am frequently collecting insensible he do appearance.                                                                           |
-| Notne1991 | Peculiar trifling absolute and wandered vicinity property yet. The and collecting motionless departure difficulty son.                                                                                                 |
-| Moull1990 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.                                                                     |
-| Spont1935 | Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat.                         |
-| Precand   | Aenean blandit risus sed pellentesque vestibulum. Fusce in ultrices augue. Nunc interdum quis nibh non feugiat.                                                                                                        |
-| Ovion1948 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
-| Thresuall | Proin euismod arcu nec diam dictum, a eleifend sem placerat. Quisque ultrices fermentum mi, fermentum molestie mauris tincidunt sit amet.                                                                              |
+![Venn diagram of an inner join—only the overlap of two circles is highlighted](diagrams/inner-join.png)
+
+| username  | text_content                                                        |
+| --------- | ------------------------------------------------------------------- |
+| Sery1976  | Announcing of invitation principles in.                             |
+| Notne1991 | Peculiar trifling absolute and wandered vicinity property yet. son. |
+| Moull1990 | Far stairs now coming bed oppose hunted become his.                 |
 
 `INNER JOIN` returns only the the users that have blog posts.
 
-#### [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp)
+### [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp)
 
 This selects every entry in the first table, but only matched records from the second. For example if we wanted a list of _every_ user, plus their blog posts' text content (if they have any):
 
+![Venn diagram of a left join—the left circle and overlap with the right circle is highlighted](diagrams/left-join.png)
+
 ```sql
 SELECT users.username, blog_posts.text_content
-FROM users
-LEFT JOIN blog_posts ON users.id = blog_posts.user_id;
+  FROM users LEFT JOIN blog_posts
+    ON users.id = blog_posts.user_id;
 ```
 
-| username  | text_content                                                                                                                                                                                                           |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sery1976  | Announcing of invitation principles in. Cold in late or deal. Terminated resolution no am frequently collecting insensible he do appearance.                                                                           |
-| Notne1991 | Peculiar trifling absolute and wandered vicinity property yet. The and collecting motionless departure difficulty son.                                                                                                 |
-| Moull1990 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.                                                                     |
-| Spont1935 | Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat.                         |
-| Precand   | Aenean blandit risus sed pellentesque vestibulum. Fusce in ultrices augue. Nunc interdum quis nibh non feugiat.                                                                                                        |
-| Ovion1948 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
-| Thresuall | Proin euismod arcu nec diam dictum, a eleifend sem placerat. Quisque ultrices fermentum mi, fermentum molestie mauris tincidunt sit amet.                                                                              |
-| Brity1971 |                                                                                                                                                                                                                        |
+| username  | text_content                                                       |
+| --------- | ------------------------------------------------------------------ |
+| Sery1976  | Announcing of invitation principles in.                            |
+| Notne1991 | Peculiar trifling absolute and wandered vicinity property yet.son. |
+| Moull1990 | Far stairs now coming bed oppose hunted become his.                |
+| Spont1935 |                                                                    |
 
-`LEFT JOIN` selects one extra row here compared to `INNER JOIN`: the final user "Thresuall" who has no blog post.
+`LEFT JOIN` selects one extra row here compared to `INNER JOIN`: the final user "Spont1935" who has no blog posts.
 
-#### [`RIGHT JOIN`](https://www.w3schools.com/sql/sql_join_right.asp)
+### [`RIGHT JOIN`](https://www.w3schools.com/sql/sql_join_right.asp)
+
+![Venn diagram of a left join—the right circle and overlap with the left circle is highlighted](diagrams/right-join.png)
 
 This is similar to `LEFT JOIN`, but returns every entry in the second table, and only matching entries in the first. With our blog post data the result would be the same as an `INNER JOIN`, since every post must have an author.
 
-### Challenges
+### Combining tables challenges
 
-#### Selecting users and comments
+1. #### Selecting users and comments
 
-Using [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp) select **every** user's location, plus the content's of any comments they've made.
+   Using [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp) select **every** user's location, plus the content's of any comments they've made.
 
-#### Expected Result
+   ##### Expected Result
 
-| location              | text_content                                                                     |
-| --------------------- | -------------------------------------------------------------------------------- |
-| Sunipol, UK           | Great blog post! Really nice. Would be good to have an English version though :) |
-| Stanton, UK           |                                                                                  |
-| Saxilby, UK           |                                                                                  |
-| Easton in Gordano, UK |                                                                                  |
-| Saxilby, UK           |                                                                                  |
-| Middlehill, UK        |                                                                                  |
-| Wanlip, UK            |                                                                                  |
-| Slackhall, UK         |                                                                                  |
+   | location       | text_content     |
+   | -------------- | ---------------- |
+   | Middlehill, UK |                  |
+   | Sunipol, UK    | Great blog post! |
+   | Wanlip, UK     |                  |
+   | Saxilby, UK    |                  |
 
-#### Selecting blog posts and comments
+   <details>
+   <summary>Solution</summary>
 
-Using [`INNER JOIN`](https://www.w3schools.com/sql/sql_join_inner.asp) select only blog posts with comments, returning the text_content of the blog posts and the text_content of the comments.
+   ```sql
+   SELECT users.location, post_comments.text_content
+     FROM users
+     LEFT JOIN post_comments ON users.id = post_comments.user_id;
+   ```
 
-#### Expected Result
+   </details>
 
-| text_content                                                                                                                                                                                   | text_content                                                                     |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat. | Great blog post! Really nice. Would be good to have an English version though :) |
+1. #### Selecting blog posts and comments
 
-#### Bonus: select the user who made a comment
+   Using [`INNER JOIN`](https://www.w3schools.com/sql/sql_join_inner.asp) select only blog posts with comments, returning the text_content of the blog posts and the text_content of the comments.
 
-Expand your previous solution to also include the username of the user who made each comment.
+   ##### Expected Result
 
-##### Expected Result
+   | text_content                                        | text_content     |
+   | --------------------------------------------------- | ---------------- |
+   | Far stairs now coming bed oppose hunted become his. | Great blog post! |
 
-| text_content                                                                                                                                                                                   | text_content                                                                     | username  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------- |
-| Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat. | Great blog post! Really nice. Would be good to have an English version though :) | Notne1991 |
+   <details>
+   <summary>Solution</summary>
 
-**Hint**: you can chain as many joins as you like.
+   ```sql
+   SELECT blog_posts.text_content, post_comments.text_content
+     FROM blog_posts
+     INNER JOIN post_comments ON blog_posts.id = post_comments.post_id;
+   ```
 
-## Bonus: Nested queries
+   </details>
+
+1. #### Bonus: select the user who made a comment
+
+   Expand your previous solution to also include the username of the user who made each comment.
+
+   ##### Expected Result
+
+   | text_content                                        | text_content     | username  |
+   | --------------------------------------------------- | ---------------- | --------- |
+   | Far stairs now coming bed oppose hunted become his. | Great blog post! | Notne1991 |
+
+   **Hint**: you can use more than one join.
+
+   <details>
+   <summary>Solution</summary>
+
+   ```sql
+   SELECT blog_posts.text_content, post_comments.text_content, users.username
+     FROM blog_posts
+     INNER JOIN post_comments ON blog_posts.id = post_comments.post_id
+     INNER JOIN users ON users.id = post_comments.user_id;
+   ```
+
+   </details>
+
+## Bonus: Sub queries
+
+You can nest SQL expressions. For example:
+
+```sql
+SELECT * FROM dogs WHERE owner = (SELECT name FROM humans WHERE id = 1)
+```
+
+is the equivalent of:
+
+```sql
+SELECT * FROM dogs WHERE owner = 'oli';
+```
+
+if there's a human with ID 1 and name 'oli'.
 
 ### Add a comment to a post
 
-Add a comment to the `post_comments` table. It should have a user ID of `3` and text content `Interesting post`. The comment should be linked to whichever post contains the text `Peculiar` (i.e. its `post_id` should be the ID of that post).
+Add a new comment to the `post_comments` table. It should have a user ID of `3` and text content `'Interesting post'`. The comment should be linked to whichever post has text content of `'Peculiar trifling absolute and wandered vicinity property yet.'` (i.e. its `post_id` should be the ID of that post).
 
 You can then run `SELECT text_content FROM post_comments WHERE post_id = 2;` to test for the expected result.
 
@@ -499,4 +498,20 @@ You can then run `SELECT text_content FROM post_comments WHERE post_id = 2;` to 
 | ---------------- |
 | Interesting post |
 
-**Hint**: You can nest SQL expressions, so you can do a `SELECT` inside of an `INSERT`, for example.
+<details>
+  <summary>Solution</summary>
+
+```sql
+INSERT INTO post_comments (post_id, reply_to, user_id, text_content)
+  VALUES (
+    (
+      SELECT id FROM blog_posts
+        WHERE text_content = 'Peculiar trifling absolute and wandered vicinity property yet.'
+    ),
+    3,
+    'Interesting post'
+  )
+;
+```
+
+</details>
