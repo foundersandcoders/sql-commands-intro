@@ -180,50 +180,29 @@ This is similar to the `OR` operator we saw above.
 
 ### Retrieving data challenges
 
-#### Select all users
-
-Using [`SELECT`](https://www.w3schools.com/sql/sql_select.asp), retrieve all the information from the `users` table
-
-##### Expected Result
-
-| id  | username  | age | first_name | last_name | location              |
-| --- | --------- | --- | ---------- | --------- | --------------------- |
-| 1   | Sery1976  | 28  | Alisha     | Clayton   | Middlehill, UK        |
-| 2   | Notne1991 | 36  | Chelsea    | Cross     | Sunipol, UK           |
-| 3   | Moull1990 | 41  | Skye       | Hobbs     | Wanlip, UK            |
-| 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK           |
-| 5   | Precand   | 19  | Erin       | Gould     | Stanton, UK           |
-| 6   | Ovion1948 | 53  | Reece      | Sheppard  | Easton in Gordano, UK |
-| 7   | Thresuall | 21  | Daniel     | Grant     | Slackhall, UK         |
-| 8   | Brity1971 | 23  | Daniel     | Brennan   | Saxilby, UK           |
-
 #### Select specific columns
 
-Using `SELECT`, retrieve a list of _only_ usernames and locations from the `users` table
+Using [`SELECT`](https://www.w3schools.com/sql/sql_select.asp), retrieve a list of _only_ usernames and locations from the `users` table
 
 **Expected Result**
 
-| username  | location              |
-| --------- | --------------------- |
-| Sery1976  | Middlehill, UK        |
-| Notne1991 | Sunipol, UK           |
-| Moull1990 | Wanlip, UK            |
-| Spont1935 | Saxilby, UK           |
-| Precand   | Stanton, UK           |
-| Ovion1948 | Easton in Gordano, UK |
-| Thresuall | Slackhall, UK         |
-| Brity1971 | Saxilby, UK           |
+| username  | location       |
+| --------- | -------------- |
+| Sery1976  | Middlehill, UK |
+| Notne1991 | Sunipol, UK    |
+| Moull1990 | Wanlip, UK     |
+| Spont1935 | Saxilby, UK    |
 
 #### Select users conditionally
 
-Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve every column for all users who are older than 50.
+Using `SELECT` and [`WHERE`](https://www.w3schools.com/sql/sql_where.asp), retrieve every column for all users who are older than 40.
 
 ##### Expected Result
 
-| id  | username  | age | first_name | last_name | location              |
-| --- | --------- | --- | ---------- | --------- | --------------------- |
-| 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK           |
-| 6   | Ovion1948 | 53  | Reece      | Sheppard  | Easton in Gordano, UK |
+| id  | username  | age | first_name | last_name | location    |
+| --- | --------- | --- | ---------- | --------- | ----------- |
+| 3   | Moull1990 | 41  | Skye       | Hobbs     | Wanlip, UK  |
+| 4   | Spont1935 | 72  | Matthew    | Griffin   | Saxilby, UK |
 
 #### Select users using multiple conditions
 
@@ -237,14 +216,14 @@ Using `SELECT` and `WHERE`, retrieve the first, last name and location of the us
 
 #### Select posts using multiple conditions
 
-Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the user ID and text content columns for posts created by users with IDs of `3` or `6`.
+Using `WHERE` and [`IN`](https://www.w3schools.com/sql/sql_in.asp), retrieve the user ID and text content columns for posts created by users with IDs of `2` or `3`.
 
 ##### Expected Result
 
-| user_id | text_content                                                                                                                                                                                                           |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 3       | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.                                                                     |
-| 6       | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
+| user_id | text_content                                                          |
+| ------- | --------------------------------------------------------------------- |
+| 2       | Peculiar trifling absolute and wandered vicinity property yet. decay. |
+| 3       | Far stairs now coming bed oppose hunted become his.                   |
 
 ## Creating and updating data
 
@@ -296,14 +275,14 @@ You can then run `SELECT text_content FROM blog_posts WHERE user_id = 1;` to tes
 
 ##### Expected Result
 
-| text_content                                                                                                                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Announcing of invitation principles in. Cold in late or deal. Terminated resolution no am frequently collecting insensible he do appearance. |
-| Hello World                                                                                                                                  |
+| text_content                            |
+| --------------------------------------- |
+| Announcing of invitation principles in. |
+| Hello World                             |
 
 #### Updating an existing post
 
-Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `5`. **Make sure you don't change any other posts**.
+Using [`UPDATE`](https://www.w3schools.com/sql/sql_update.asp), update the blog post from the previous question to change the author to the user with ID `2`. **Make sure you don't change any other posts**.
 
 You can then run `SELECT user_id FROM blog_posts WHERE text_content='Hello world';` to test for the expected result.
 
@@ -329,15 +308,11 @@ INNER JOIN blog_posts ON users.id = blog_posts.user_id;
 
 ![Venn diagram of an inner join—only the overlap of two circles is highlighted](diagrams/inner-join.png)
 
-| username  | text_content                                                                                                                                                                                                           |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sery1976  | Announcing of invitation principles in. Cold in late or deal. Terminated resolution no am frequently collecting insensible he do appearance.                                                                           |
-| Notne1991 | Peculiar trifling absolute and wandered vicinity property yet. The and collecting motionless departure difficulty son.                                                                                                 |
-| Moull1990 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.                                                                     |
-| Spont1935 | Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat.                         |
-| Precand   | Aenean blandit risus sed pellentesque vestibulum. Fusce in ultrices augue. Nunc interdum quis nibh non feugiat.                                                                                                        |
-| Ovion1948 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
-| Thresuall | Proin euismod arcu nec diam dictum, a eleifend sem placerat. Quisque ultrices fermentum mi, fermentum molestie mauris tincidunt sit amet.                                                                              |
+| username  | text_content                                                        |
+| --------- | ------------------------------------------------------------------- |
+| Sery1976  | Announcing of invitation principles in.                             |
+| Notne1991 | Peculiar trifling absolute and wandered vicinity property yet. son. |
+| Moull1990 | Far stairs now coming bed oppose hunted become his.                 |
 
 `INNER JOIN` returns only the the users that have blog posts.
 
@@ -353,18 +328,14 @@ FROM users
 LEFT JOIN blog_posts ON users.id = blog_posts.user_id;
 ```
 
-| username  | text_content                                                                                                                                                                                                           |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sery1976  | Announcing of invitation principles in. Cold in late or deal. Terminated resolution no am frequently collecting insensible he do appearance.                                                                           |
-| Notne1991 | Peculiar trifling absolute and wandered vicinity property yet. The and collecting motionless departure difficulty son.                                                                                                 |
-| Moull1990 | Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay.                                                                     |
-| Spont1935 | Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat.                         |
-| Precand   | Aenean blandit risus sed pellentesque vestibulum. Fusce in ultrices augue. Nunc interdum quis nibh non feugiat.                                                                                                        |
-| Ovion1948 | Etiam in est nec neque dapibus pretium in in lectus. Proin consequat velit quis magna aliquam tristique. Sed ultricies nulla vel feugiat mattis. Aliquam erat volutpat. Aliquam ac vehicula diam, eget ultricies nisi. |
-| Thresuall | Proin euismod arcu nec diam dictum, a eleifend sem placerat. Quisque ultrices fermentum mi, fermentum molestie mauris tincidunt sit amet.                                                                              |
-| Brity1971 |                                                                                                                                                                                                                        |
+| username  | text_content                                                       |
+| --------- | ------------------------------------------------------------------ |
+| Sery1976  | Announcing of invitation principles in.                            |
+| Notne1991 | Peculiar trifling absolute and wandered vicinity property yet.son. |
+| Moull1990 | Far stairs now coming bed oppose hunted become his.                |
+| Spont1935 |                                                                    |
 
-`LEFT JOIN` selects one extra row here compared to `INNER JOIN`: the final user "Thresuall" who has no blog post.
+`LEFT JOIN` selects one extra row here compared to `INNER JOIN`: the final user "Spont1935" who has no blog posts.
 
 #### [`RIGHT JOIN`](https://www.w3schools.com/sql/sql_join_right.asp)
 
@@ -380,16 +351,12 @@ Using [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp) select **ev
 
 #### Expected Result
 
-| location              | text_content                                                                     |
-| --------------------- | -------------------------------------------------------------------------------- |
-| Sunipol, UK           | Great blog post! Really nice. Would be good to have an English version though :) |
-| Stanton, UK           |                                                                                  |
-| Saxilby, UK           |                                                                                  |
-| Easton in Gordano, UK |                                                                                  |
-| Saxilby, UK           |                                                                                  |
-| Middlehill, UK        |                                                                                  |
-| Wanlip, UK            |                                                                                  |
-| Slackhall, UK         |                                                                                  |
+| location       | text_content     |
+| -------------- | ---------------- |
+| Middlehill, UK |                  |
+| Sunipol, UK    | Great blog post! |
+| Wanlip, UK     |                  |
+| Saxilby, UK    |                  |
 
 #### Selecting blog posts and comments
 
@@ -397,9 +364,9 @@ Using [`INNER JOIN`](https://www.w3schools.com/sql/sql_join_inner.asp) select on
 
 #### Expected Result
 
-| text_content                                                                                                                                                                                   | text_content                                                                     |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat. | Great blog post! Really nice. Would be good to have an English version though :) |
+| text_content                                        | text_content     |
+| --------------------------------------------------- | ---------------- |
+| Far stairs now coming bed oppose hunted become his. | Great blog post! |
 
 #### Bonus: select the user who made a comment
 
@@ -407,11 +374,11 @@ Expand your previous solution to also include the username of the user who made 
 
 ##### Expected Result
 
-| text_content                                                                                                                                                                                   | text_content                                                                     | username  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------- |
-| Curabitur arcu quam, imperdiet ac orci ac, mattis tempor nunc. Nunc a lacus sollicitudin, bibendum libero a, consectetur orci. In eget vulputate nisl. Mauris at nunc at massa cursus feugiat. | Great blog post! Really nice. Would be good to have an English version though :) | Notne1991 |
+| text_content                                        | text_content     | username  |
+| --------------------------------------------------- | ---------------- | --------- |
+| Far stairs now coming bed oppose hunted become his. | Great blog post! | Notne1991 |
 
-**Hint**: you can chain as many joins as you like.
+**Hint**: you can use more than one join.
 
 ## Bonus: Nested queries
 
