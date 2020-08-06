@@ -421,6 +421,8 @@ FROM users
 INNER JOIN blog_posts ON users.id = blog_posts.user_id;
 ```
 
+![Venn diagram of an inner join—only the overlap of two circles is highlighted](diagrams/inner-join.png)
+
 | username  | text_content                                                                                                                                                                                                           |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Sery1976  | Announcing of invitation principles in. Cold in late or deal. Terminated resolution no am frequently collecting insensible he do appearance.                                                                           |
@@ -436,6 +438,8 @@ INNER JOIN blog_posts ON users.id = blog_posts.user_id;
 #### [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp)
 
 This selects every entry in the first table, but only matched records from the second. For example if we wanted a list of _every_ user, plus their blog posts' text content (if they have any):
+
+![Venn diagram of a left join—the left circle and overlap with the right circle is highlighted](diagrams/left-join.png)
 
 ```sql
 SELECT users.username, blog_posts.text_content
@@ -457,6 +461,8 @@ LEFT JOIN blog_posts ON users.id = blog_posts.user_id;
 `LEFT JOIN` selects one extra row here compared to `INNER JOIN`: the final user "Thresuall" who has no blog post.
 
 #### [`RIGHT JOIN`](https://www.w3schools.com/sql/sql_join_right.asp)
+
+![Venn diagram of a left join—the right circle and overlap with the left circle is highlighted](diagrams/right-join.png)
 
 This is similar to `LEFT JOIN`, but returns every entry in the second table, and only matching entries in the first. With our blog post data the result would be the same as an `INNER JOIN`, since every post must have an author.
 
