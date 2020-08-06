@@ -49,9 +49,7 @@ INNER JOIN users ON users.id = post_comments.user_id;
 -- Bonus: Nested queries
 INSERT INTO post_comments (post_id, reply_to, user_id, text_content) VALUES
   (
-    (
-      SELECT id FROM blog_posts WHERE text_content LIKE '%Peculiar%'
-    ),
+    (SELECT id FROM blog_posts WHERE text_content = 'Peculiar trifling absolute and wandered vicinity property yet.'),
     3,
     'Interesting post'
   )

@@ -377,11 +377,25 @@ Expand your previous solution to also include the username of the user who made 
 
 **Hint**: you can use more than one join.
 
-## Bonus: Nested queries
+## Bonus: Sub queries
+
+You can nest SQL expressions. For example:
+
+```sql
+SELECT * FROM dogs WHERE owner = (SELECT name FROM humans WHERE id = 1)
+```
+
+is the equivalent of:
+
+```sql
+SELECT * FROM dogs WHERE owner = 'oli';
+```
+
+if there's a human with ID 1 and name 'oli'.
 
 ### Add a comment to a post
 
-Add a comment to the `post_comments` table. It should have a user ID of `3` and text content `Interesting post`. The comment should be linked to whichever post contains the text `Peculiar` (i.e. its `post_id` should be the ID of that post).
+Add a new comment to the `post_comments` table. It should have a user ID of `3` and text content `'Interesting post'`. The comment should be linked to whichever post has text content of `'Peculiar trifling absolute and wandered vicinity property yet.'` (i.e. its `post_id` should be the ID of that post).
 
 You can then run `SELECT text_content FROM post_comments WHERE post_id = 2;` to test for the expected result.
 
@@ -390,5 +404,3 @@ You can then run `SELECT text_content FROM post_comments WHERE post_id = 2;` to 
 | text_content     |
 | ---------------- |
 | Interesting post |
-
-**Hint**: You can nest SQL expressions, so you can do a `SELECT` inside of an `INSERT`, for example.
