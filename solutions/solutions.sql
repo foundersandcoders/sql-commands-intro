@@ -21,7 +21,10 @@ SELECT user_id, text_content FROM blog_posts WHERE user_id IN (2, 3);
 --
 
 -- 1. Adding a new post
-INSERT INTO blog_posts (text_content, user_id) VALUES ('Hello World', 1);
+INSERT INTO blog_posts (text_content, user_id)
+  VALUES ('Hello World', 1)
+  RETURNING text_content, user_id
+;
 
 -- 2. Updating an existing post
 UPDATE blog_posts SET user_id=2 WHERE text_content='Hello World';

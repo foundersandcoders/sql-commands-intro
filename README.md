@@ -301,8 +301,8 @@ Would return:
 
 | id  | username  |
 | --- | --------- |
-| 0   | oliverjam |
-| 1   | oli       |
+| 1   | oliverjam |
+| 2   | oli       |
 
 ### Creating and updating data challenges
 
@@ -321,7 +321,9 @@ Would return:
 
    ```sql
    INSERT INTO blog_posts (text_content, user_id)
-     VALUES ('Hello World', 1);
+     VALUES ('Hello World', 1)
+     RETURNING text_content, user_id
+   ;
    ```
 
    </details>
@@ -403,7 +405,7 @@ This is similar to `LEFT JOIN`, but returns every entry in the second table, and
 
 1. #### Selecting users and comments
 
-   Using [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp) select **every** user's location, plus the content's of any comments they've made.
+   Using [`LEFT JOIN`](https://www.w3schools.com/sql/sql_join_left.asp) select **every** user's location, plus the content of any comments they've made.
 
    ##### Expected Result
 
