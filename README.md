@@ -364,6 +364,22 @@ UPDATE users SET first_name = 'oliver' WHERE username = 'oliverjam';
 
 would update the first name of the user with username `"oliverjam"` to be `"oliver"`.
 
+### `RETURNING`
+
+You can access the created/changed rows with a `RETURNING` clause after your `INSERT` or `UPDATE`. This lets you query the inserted rows using the same syntax as a `SELECT`. It's primarily used to get auto-generated values like IDs without having to do a whole separate `SELECT` query.
+
+```sql
+INSERT INTO users (username, first_name) VALUES ('oliverjam', 'oli')
+  RETURNING id, username;
+```
+
+Would return:
+
+| id  | username  |
+| --- | --------- |
+| 0   | oliverjam |
+| 1   | oli       |
+
 ### Challenges
 
 #### Adding a new post
