@@ -244,7 +244,7 @@ FROM users;
 | Thresuall | nah, they do not |
 | Brity1971 | yeah, they do    |
 
-### Challenges
+### Retrieving data challenges
 
 #### Select all users
 
@@ -380,7 +380,7 @@ Would return:
 | 0   | oliverjam |
 | 1   | oli       |
 
-### Challenges
+### Creating and updating data challenges
 
 #### Adding a new post
 
@@ -460,7 +460,7 @@ LEFT JOIN blog_posts ON users.id = blog_posts.user_id;
 
 This is similar to `LEFT JOIN`, but returns every entry in the second table, and only matching entries in the first. With our blog post data the result would be the same as an `INNER JOIN`, since every post must have an author.
 
-### Challenges
+### Combining tables challenges
 
 #### Selecting users and comments
 
