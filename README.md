@@ -338,7 +338,7 @@ Would return:
 
    | user_id |
    | ------- |
-   | 5       |
+   | 2       |
 
    <details>
    <summary>Solution</summary>
